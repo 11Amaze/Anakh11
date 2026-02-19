@@ -1,0 +1,51 @@
+{
+  "words": [
+    {
+      "cuneiform": "𒀭",
+      "transliteration": "an",
+      "pronunciation": "/an/",
+      "translation": "sky, heaven, god An",
+      "category": "religion",
+      "signName": "AN",
+      "period": "Early Dynastic - Old Babylonian",
+      "description": "The cuneiform sign for 'an', representing the sky god An."
+    }
+  ]
+}
+
+// data/sumerian.json
+{
+  "metadata": {
+    "source": "ePSD2 & ORACC",
+    "count": 2485,
+    "version": "1.0"
+  },
+  "words": [
+    {
+      "id": "SU001",
+      "cuneiform": "𒀭",
+      "transliteration": "an",
+      "normalization": "an",
+      "pronunciation": "/an/",
+      "meaning": "sky, heaven, god An",
+      "category": "deities",
+      "sign_name": "AN",
+      "period": ["ED", "OAkk", "OB"],
+      "frequency": 1452,
+      "compounds": ["𒀭𒆠 - an.ki - universe (heaven + earth)"]
+    }
+  ]
+}
+
+[
+  {"cuneiform": "𒀭", "transliteration": "an", "meaning": "sky, heaven"},
+  {"cuneiform": "𒆠", "transliteration": "ki", "meaning": "earth"},
+  {"cuneiform": "𒂗", "transliteration": "en", "meaning": "lord"},
+  {"cuneiform": "𒈨", "transliteration": "me", "meaning": "divine powers"},
+  {"cuneiform": "𒈬", "transliteration": "mu", "meaning": "name"},
+  {"cuneiform": "𒁍", "transliteration": "du", "meaning": "to build"},
+  {"cuneiform": "𒆠𒂗", "transliteration": "ki.en.gi", "meaning": "Sumer"},
+  {"cuneiform": "𒀭𒆠", "transliteration": "an.ki", "meaning": "universe"},
+  {"cuneiform": "𒌉", "transliteration": "dumu", "meaning": "child"},
+  {"cuneiform": "𒂍", "transliteration": "e", "meaning": "house, temple"}
+]

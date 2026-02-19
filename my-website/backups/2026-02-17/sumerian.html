@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient Lexicon | Egyptian & Sumerian Dictionary</title>
+    <meta name="description" content="Comprehensive database of Ancient Egyptian and Sumerian words, hieroglyphs, and cuneiform">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Cardo:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Blue/Purple Sumerian Theme with Dark Mode -->
+    <style>
+        :root {
+            /* Blue/Purple Theme - Clay Tablets (Light Mode) */
+            --primary-color: #4a6fa5;
+            --primary-dark: #2e4a7a;
+            --secondary-color: #7d6ba8;
+            --accent-color: #9c89b8;
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a4a6a;
+            --bg-primary: #f0f4f8;
+            --bg-secondary: #e1e8f0;
+            --bg-tertiary: #d1dae5;
+            --border-color: #b8c5d6;
+            --card-bg: #ffffff;
+            --shadow-sm: 0 1px 3px rgba(74, 111, 165, 0.12);
+            --shadow: 0 4px 6px rgba(74, 111, 165, 0.15);
+            --shadow-lg: 0 10px 15px rgba(74, 111, 165, 0.2);
+            --shadow-xl: 0 20px 25px rgba(74, 111, 165, 0.25);
+            --gradient: linear-gradient(135deg, #4a6fa5 0%, #7d6ba8 50%, #9c89b8 100%);
+            --clay-bg: url('data:image/svg+xml,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><filter id="clayNoise"><feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100" height="100" filter="url(%23clayNoise)" opacity="0.08"/></svg>');
+            --radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            /* Blue/Purple Theme - Night Sky (Dark Mode) */
+            --primary-color: #7d9bc8;
+            --primary-dark: #4a6fa5;
+            --secondary-color: #9c89b8;
+            --accent-color: #b8a9d8;
+            --text-primary: #e6e9f0;
+            --text-secondary: #b0b8cc;
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #141a2d;
+            --bg-tertiary: #1d2740;
+            --border-color: #2d3a5a;
+            --card-bg: #1a2338;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.7);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.8);
+            --gradient: linear-gradient(135deg, #2e4a7a 0%, #5e4a8a 50%, #7d6ba8 100%);
+            --clay-bg: url('data:image/svg+xml,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><filter id="clayNoise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100" height="100" filter="url(%23clayNoise)" opacity="0.05"/></svg>');
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            background-image: var(--clay-bg);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar {
+            background-color: rgba(var(--bg-primary), 0.95);
+            border-bottom-color: var(--border-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .logo-icon {
+            color: var(--secondary-color);
+        }
+
+        .logo-text {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .badge {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .category-tag.nouns { background: #e3f2fd; color: #1976d2; }
+        .category-tag.verbs { background: #f3e5f5; color: #7b1fa2; }
+        .category-tag.deities { background: #e8f5e9; color: #388e3c; }
+        .category-tag.places { background: #fff3e0; color: #f57c00; }
+        .category-tag.objects { background: #fce4ec; color: #c2185b; }
+        .category-tag.concepts { background: #e8eaf6; color: #303f9f; }
+
+        [data-theme="dark"] .category-tag.nouns { background: #1e3a5f; color: #90caf9; }
+        [data-theme="dark"] .category-tag.verbs { background: #3e2d4d; color: #ce93d8; }
+        [data-theme="dark"] .category-tag.deities { background: #1b3e2c; color: #81c784; }
+        [data-theme="dark"] .category-tag.places { background: #3d2e1a; color: #ffb74d; }
+        [data-theme="dark"] .category-tag.objects { background: #3d1e2d; color: #f48fb1; }
+        [data-theme="dark"] .category-tag.concepts { background: #2d2e5f; color: #9fa8da; }
+
+        .period-tag {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+        }
+
+        .sign-name {
+            font-family: 'Cinzel', serif;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .word-card {
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+            background: var(--card-bg);
+        }
+
+        .word-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 8px 25px rgba(74, 111, 165, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, rgba(var(--bg-primary), 0.9) 0%, rgba(var(--bg-secondary), 0.9) 100%);
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        .footer {
+            background: var(--primary-dark);
+            color: white;
+        }
+
+        .footer a {
+            color: #d1dae5;
+        }
+
+        .footer a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-outline {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Search container */
+        .search-container {
+            background: var(--bg-secondary);
+            border-color: var(--border-color);
+        }
+
+        .search-container input {
+            background: transparent;
+            color: var(--text-primary);
+        }
+
+        .search-container input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        /* Dropdown */
+        .dropdown-content {
+            background: var(--card-bg);
+            border-color: var(--border-color);
+        }
+
+        .dropdown-content a {
+            color: var(--text-primary);
+        }
+
+        .dropdown-content a:hover {
+            background: var(--bg-secondary);
+        }
+
+        /* Tool cards */
+        .tool-card {
+            background: var(--card-bg);
+            border-color: var(--border-color);
+        }
+
+        /* Select elements */
+        select {
+            background: var(--bg-secondary);
+            border-color: var(--border-color);
+            color: var(--text-primary);
+        }
+
+        option {
+            background: var(--card-bg);
+            color: var(--text-primary);
+        }
+
+        /* Pagination */
+        .page-link {
+            background: var(--bg-secondary);
+            border-color: var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .page-link:hover:not(.current) {
+            background: var(--bg-tertiary);
+            border-color: var(--primary-color);
+        }
+
+        .page-link.current {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Modal */
+        .word-modal .modal-content {
+            background: var(--card-bg);
+            border-color: var(--primary-color);
+        }
+
+        /* No results */
+        .no-results {
+            color: var(--text-secondary);
+        }
+
+        /* Homepage specific styles */
+        .hero {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .hero-title span:not(.hieroglyph-title) {
+            color: var(--primary-dark);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1rem;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .category-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+.category-card {
+    text-decoration: none !important;
+}
+
+.category-card h3,
+.category-card p,
+.category-card .category-icon,
+.category-card .category-count {
+    text-decoration: none !important;
+}
+
+.category-card:hover {
+    text-decoration: none !important;
+}
+
+/* Ensure no child elements have underlines */
+.category-card * {
+    text-decoration: none !important;
+}
+
+        .category-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-count {
+            background: var(--bg-tertiary);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        .words-table {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .table-header {
+            background: var(--bg-secondary);
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr 2fr 1fr;
+            padding: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr 2fr 1fr;
+            padding: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .hieroglyph, .cuneiform {
+            font-family: 'Segoe UI Historic', 'Noto Sans Cuneiform', sans-serif;
+            font-size: 1.2rem;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--border-color);
+            z-index: 1;
+        }
+
+        .timeline-item {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            flex: 1;
+        }
+
+        .timeline-date {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .table-header, .table-row {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            
+            .timeline {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .timeline::before {
+                display: none;
+            }
+        }
+        /* =============== CONSISTENCY FIXES =============== */
+
+/* Ensure active state in dropdown matches theme */
+.dropdown-content a.active {
+    background: var(--bg-secondary);
+    border-left-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* Improve mobile menu consistency */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--card-bg);
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: var(--shadow-xl);
+        border-top: 1px solid var(--border-color);
+    }
+    
+    .nav-links.active {
+        display: flex;
+    }
+    
+    .search-container {
+        width: 100%;
+        margin-top: 1rem;
+    }
+    
+    .search-container input {
+        width: 100%;
+    }
+}
+
+/* Ensure theme toggle consistency */
+.btn-outline {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-outline:hover {
+    background: var(--primary-color);
+    color: white;
+}
+    </style>
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>𒆠</text></svg>">
+</head>
+<body>
+    
+    <!-- =============== SUMERIAN NAVIGATION TEMPLATE =============== -->
+
+
+<nav class="navbar" aria-label="Main navigation">
+    <div class="container nav-container">
+        <!-- Sumerian-first logo layout -->
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <a href="anakh11_sumerian.html" class="logo" aria-label="Ancient Lexicon Sumerian Home">
+                <span class="logo-icon" aria-hidden="true">𒆠</span>
+                <span class="logo-text">𒀭𒊺𒉀</span>
+            </a>
+            <a href="anakh11.html" class="logo" aria-label="Ancient Lexicon Egyptian Home">
+                <span class="logo-icon" aria-hidden="true">𓋹</span>
+                <span class="logo-text">ꜤANAḪ𓊹𓊹</span>
+            </a>
+        </div>
+        
+        <div class="nav-links">
+            <!-- Dictionaries Dropdown -->
+            <div class="nav-dropdown">
+                <button class="nav-link" aria-expanded="false" aria-controls="dictionaries-dropdown">
+                    <i class="fas fa-book" aria-hidden="true"></i> Dictionaries
+                </button>
+                <div class="dropdown-content" id="dictionaries-dropdown">
+                    <a href="anakh11.html"><i class="fas fa-eye" aria-hidden="true"></i> Egyptian</a>
+                    <a href="anakh11_sumerian.html" class="active"><i class="fas fa-tablet" aria-hidden="true"></i> Sumerian</a>
+                    <a href="hieroglyphs.html"><i class="fas fa-feather-alt" aria-hidden="true"></i> Hieroglyphs</a>
+                    <a href="cuneiform.html"><i class="fas fa-monument" aria-hidden="true"></i> Cuneiform</a>
+                </div>
+            </div>
+            
+            <!-- Standard Links -->
+            <a href="sumerian-grammar.html" class="nav-link">
+                <i class="fas fa-language" aria-hidden="true"></i> Grammar
+            </a>
+            <a href="sumerian-timeline.html" class="nav-link">
+                <i class="fas fa-hourglass-half" aria-hidden="true"></i> Timeline
+            </a>
+            <a href="mesopotamian-artifacts.html" class="nav-link">
+                <i class="fas fa-museum" aria-hidden="true"></i> Artifacts
+            </a>
+            
+            <!-- Theme Toggle -->
+            <button class="btn btn-outline" id="themeToggle" aria-label="Toggle dark/light mode">
+                <i class="fas fa-moon" aria-hidden="true"></i>
+            </button>
+            
+            <!-- Search -->
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search all languages..." 
+                       aria-label="Search ancient words">
+                <button id="searchBtn" aria-label="Search">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Button -->
+        <button class="mobile-menu-btn" aria-label="Open mobile menu" aria-expanded="false">
+            <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+    </div>
+</nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="header-content">
+                <span class="badge">Ancient Languages Database</span>
+                <h1 class="hero-title">
+                    <span class="hieroglyph-title">𓋹𓍑𓎛𓏏𓂋𓂝𓃭𓄿𓅓𓆑𓇋𓈖𓉔𓊪𓋔𓌙𓍏𓎼</span>
+                    <br>Explore Ancient Civilisations
+                </h1>
+                <p class="hero-subtitle">
+                    5,000+ Egyptian hieroglyphs and Sumerian cuneiform words with translations, 
+                    pronunciations, and historical context. A comprehensive scholarly resource for linguists, 
+                    historians, and enthusiasts.
+                </p>
+                
+                <div class="hero-actions">
+                    <a href="anakh11.html" class="btn btn-primary">
+                        <i class="fas fa-eye"></i> Egyptian Dictionary
+                    </a>
+                    <a href="anakh11_sumerian.html" class="btn btn-secondary">
+                        <i class="fas fa-tablet"></i> Sumerian Dictionary
+                    </a>
+                    <button class="btn btn-outline" id="quickSearchBtn">
+                        <i class="fas fa-search"></i> Quick Search
+                    </button>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">3,217</span>
+                        <span class="stat-label">Egyptian Words</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">2,845</span>
+                        <span class="stat-label">Sumerian Words</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">750+</span>
+                        <span class="stat-label">Hieroglyphs</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">600+</span>
+                        <span class="stat-label">Cuneiform Signs</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Explore Ancient Civilisations</h2>
+                <p class="section-subtitle">Comprehensive linguistic and cultural database</p>
+            </div>
+            
+            <div class="features-grid">
+                <a href="anakh11.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Egyptian Dictionary</h3>
+                    <p>3,217 words with hieroglyphs, transliterations, Middle Egyptian translations, and Gardiner classifications.</p>
+                    <span class="feature-link">Browse 𓂀 →</span>
+                </a>
+                
+                <a href="anakh11_sumerian.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tablet"></i>
+                    </div>
+                    <h3>Sumerian Lexicon</h3>
+                    <p>2,845 cuneiform signs with Sumerian logograms, phonetic values, and English translations.</p>
+                    <span class="feature-link">Explore 𒆠 →</span>
+                </a>
+                
+                <a href="hieroglyphs.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-feather-alt"></i>
+                    </div>
+                    <h3>Hieroglyph Guide</h3>
+                    <p>750+ hieroglyphs organized by Gardiner classification with pronunciation and usage examples.</p>
+                    <span class="feature-link">Learn 𓏙 →</span>
+                </a>
+                
+                <a href="cuneiform.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-monument"></i>
+                    </div>
+                    <h3>Cuneiform Signs</h3>
+                    <p>600+ cuneiform signs with their values, meanings, and historical development from pictographs.</p>
+                    <span class="feature-link">Study 𒀭 →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Browse Section -->
+    <section class="browse-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Quick Browse by Category</h2>
+                <p class="section-subtitle">Explore words organized by thematic groups</p>
+            </div>
+            
+            <div class="category-grid">
+                <a href="anakh11.html#category=deities" class="category-card">
+                    <div class="category-icon">𓊹</div>
+                    <h3>Deities & Religion</h3>
+                    <p>Gods, rituals, temples, and afterlife concepts</p>
+                    <div class="category-count">512 words</div>
+                </a>
+                
+                <a href="anakh11.html#category=nouns" class="category-card">
+                    <div class="category-icon">𓀀𓁐</div>
+                    <h3>People & Titles</h3>
+                    <p>Pharaohs, deities, priests, and social roles</p>
+                    <div class="category-count">428 words</div>
+                </a>
+                
+                <a href="anakh11_sumerian.html#category=places" class="category-card">
+                    <div class="category-icon">𒆠</div>
+                    <h3>Places & Geography</h3>
+                    <p>Cities, temples, rivers, and geographical terms</p>
+                    <div class="category-count">356 words</div>
+                </a>
+                
+                <a href="anakh11.html#category=animals" class="category-card">
+                    <div class="category-icon">𓆑</div>
+                    <h3>Animals</h3>
+                    <p>Domestic, wild, sacred, and mythological creatures</p>
+                    <div class="category-count">287 words</div>
+                </a>
+                
+                <a href="anakh11_sumerian.html#category=objects" class="category-card">
+                    <div class="category-icon">𒀭</div>
+                    <h3>Objects & Tools</h3>
+                    <p>Food, clothing, tools, and household items</p>
+                    <div class="category-count">398 words</div>
+                </a>
+                
+                <a href="anakh11.html#category=concepts" class="category-card">
+                    <div class="category-icon">𓏙</div>
+                    <h3>Concepts</h3>
+                    <p>Philosophical, mathematical, and abstract terms</p>
+                    <div class="category-count">312 words</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+<!-- =============== UPDATED FOOTER =============== -->
+
+<footer class="footer" role="contentinfo">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <a href="anakh11_sumerian.html" class="logo" style="margin: 0;">
+                        <span class="logo-icon">𒆠</span>
+                        <span class="logo-text">𒀭𒊺𒉀</span>
+                    </a>
+                    <a href="anakh11.html" class="logo" style="margin: 0;">
+                        <span class="logo-icon">𓋹</span>
+                        <span class="logo-text">ꜤANAḪ𓊹𓊹</span>
+                    </a>
+                </div>
+                <p class="footer-tagline">
+                    Preserving the languages of ancient civilisations through digital scholarship.
+                </p>
+                <div class="footer-social">
+                    <a href="#" class="social-link" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+                    <a href="#" class="social-link" aria-label="ResearchGate"><i class="fab fa-researchgate" aria-hidden="true"></i></a>
+                    <a href="#" class="social-link" aria-label="University"><i class="fas fa-university" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Main Dictionaries</h4>
+                    <a href="anakh11.html"><i class="fas fa-eye"></i> Egyptian Dictionary</a>
+                    <a href="anakh11_sumerian.html"><i class="fas fa-tablet"></i> Sumerian Dictionary</a>
+                    <a href="index.html"><i class="fas fa-home"></i> Home Page</a>
+                    <a href="contact.html">Contact & Contribute</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Egyptian Resources</h4>
+                    <a href="hieroglyphs.html">Hieroglyph Guide</a>
+                    <a href="grammar.html">Grammar Rules</a>
+                    <a href="timeline.html">Historical Timeline</a>
+                    <a href="resources.html">Bibliography</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Sumerian Resources</h4>
+                    <a href="cuneiform-guide.html">Cuneiform Guide</a>
+                    <a href="sumerian-grammar.html">Grammar Rules</a>
+                    <a href="mesopotamian-timeline.html">Historical Timeline</a>
+                    <a href="sumerian-bibliography.html">Bibliography</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <a href="anakh11.html#category=deities">Egyptian Deities</a>
+                    <a href="anakh11_sumerian.html#category=deities">Sumerian Deities</a>
+                    <a href="anakh11.html#category=places">Egyptian Places</a>
+                    <a href="anakh11_sumerian.html#category=places">Sumerian Places</a>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <a href="contact_1.html">Contribute</a>
+                    <a href="contact_2.html">Report Errors</a>
+                    <a href="contact_3.html">Contact Scholars</a>
+                    <a href="contact_4.html">Feedback</a>
+                    <a href="contact_5.html">Updates</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; <span id="current-year">2026</span> Ancient Lexicon Project. All rights reserved.</p>
+            <p class="tech-stack">
+                Based on: Gardiner's Sign List • Faulkner's Dictionary • ePSD • Cuneiform Digital Library • Pennsylvania Sumerian Dictionary
+            </p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const yearElement = document.getElementById('current-year');
+        if (yearElement) {
+            yearElement.textContent = new Date().getFullYear();
+        }
+    });
+</script>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- =============== UNIFIED NAVIGATION SCRIPT =============== -->
+
+<script>
+    // =============== THEME MANAGEMENT ===============
+    
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle?.querySelector('i');
+
+    // Check for saved theme or system preference
+    function initializeTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            if (themeIcon) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            if (themeIcon) {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        }
+    }
+
+    // Theme toggle event listener
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    }
+    
+    // =============== NAVIGATION FUNCTIONALITY ===============
+    
+    // Mobile Menu
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener('click', function() {
+            const expanded = this.getAttribute('aria-expanded') === 'true' || false;
+            this.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+    }
+    
+    // Dropdowns
+    const dropdownButtons = document.querySelectorAll('.nav-dropdown > button.nav-link');
+    
+    dropdownButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const expanded = this.getAttribute('aria-expanded') === 'true' || false;
+            this.setAttribute('aria-expanded', !expanded);
+            
+            // Close other dropdowns when opening one
+            dropdownButtons.forEach(otherBtn => {
+                if (otherBtn !== this) {
+                    otherBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+    });
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function() {
+        dropdownButtons.forEach(button => {
+            button.setAttribute('aria-expanded', 'false');
+        });
+    });
+    
+    // Search Functionality
+    const searchBtn = document.getElementById('searchBtn');
+    const searchInput = document.getElementById('searchInput');
+    const quickSearchBtn = document.getElementById('quickSearchBtn');
+    
+    if (searchBtn && searchInput) {
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') performSearch();
+        });
+    }
+    
+    if (quickSearchBtn) {
+        quickSearchBtn.addEventListener('click', () => {
+            searchInput?.focus();
+        });
+    }
+    
+    function performSearch() {
+        const query = searchInput.value.trim();
+        if (!query) return;
+        
+        // For now, show alert. In real implementation, redirect to search page.
+        alert(`Searching for "${query}" in all languages`);
+        // window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+    }
+    
+    // =============== BACK TO TOP ===============
+    const backToTop = document.getElementById('backToTop');
+    if (backToTop) {
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+    
+    // =============== INITIALIZATION ===============
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize theme
+        initializeTheme();
+        
+        // Console greeting
+        console.log('%c𒆠 Sumerian Homepage Loaded', 'color: #4a6fa5; font-size: 16px; font-weight: bold;');
+        console.log('Navigation unified with Pattern A behavior');
+    });
+    
+    // =============== KEYBOARD SHORTCUTS ===============
+    document.addEventListener('keydown', (e) => {
+        // Ctrl+F or Cmd+F for search
+        if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+            e.preventDefault();
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) searchInput.focus();
+        }
+        
+        // Escape to clear search
+        const activeElement = document.activeElement;
+        if (e.key === 'Escape' && activeElement.tagName === 'INPUT' && 
+            activeElement.id === 'searchInput') {
+            e.preventDefault();
+            activeElement.value = '';
+        }
+    });
+</script>
+</body>
+</html>

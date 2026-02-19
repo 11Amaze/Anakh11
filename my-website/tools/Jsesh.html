@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𓏞 Gardiner Sign List Converter with JSesh Support</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Cardo:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Egyptian+Hieroglyphs&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* [Keep all existing styles exactly as they are in your file] */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fcf8f3;
+            color: #2c1e0e;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #8b4513, #a0522d);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        h1 span {
+            font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+            font-size: 3rem;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .stats-panel {
+            background: #fff;
+            border: 2px solid #d4b48c;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #8b4513;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .card {
+            background: #fff;
+            border: 2px solid #d4b48c;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(139, 69, 19, 0.1);
+        }
+        
+        .card h2 {
+            font-family: 'Cinzel', serif;
+            color: #8b4513;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid #f0e0d0;
+            padding-bottom: 10px;
+        }
+        
+        .card h2 i {
+            font-size: 1.2rem;
+            opacity: 0.7;
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 300px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            padding: 15px;
+            border: 2px solid #d4b48c;
+            border-radius: 8px;
+            background: #fff9f2;
+            margin-bottom: 15px;
+            resize: vertical;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #8b4513;
+            box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.2);
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        button {
+            background: #8b4513;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        button:hover {
+            background: #a0522d;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
+        }
+        
+        button.secondary {
+            background: #5d4037;
+        }
+        
+        button.secondary:hover {
+            background: #795548;
+        }
+        
+        button.success {
+            background: #2e7d32;
+        }
+        
+        button.success:hover {
+            background: #388e3c;
+        }
+        
+        .batch-export-panel {
+            background: #fff3e0;
+            border: 2px solid #8b4513;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .batch-export-panel h3 {
+            font-family: 'Cinzel', serif;
+            color: #8b4513;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .control-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            align-items: flex-end;
+        }
+        
+        .control-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .control-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #5d4037;
+        }
+        
+        .control-group input, .control-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #d4b48c;
+            border-radius: 6px;
+            background: #fff;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .image-pattern-input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #d4b48c;
+            border-radius: 6px;
+            font-family: monospace;
+            margin-bottom: 10px;
+        }
+        
+        .image-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+            padding: 15px;
+            background: #fff;
+            border-radius: 8px;
+            max-height: 250px;
+            overflow-y: auto;
+            border: 1px solid #d4b48c;
+        }
+        
+        .preview-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px;
+            background: #f8f4f0;
+            border-radius: 6px;
+            font-size: 12px;
+            border: 1px solid #e0d6cc;
+        }
+        
+        .preview-glyph-small {
+            font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+            font-size: 24px;
+        }
+        
+        .code-snippet {
+            background: #2c1e0e;
+            color: #f0e0d0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            margin-top: 15px;
+        }
+        
+        .output-section {
+            margin-top: 30px;
+        }
+        
+        .output-tabs {
+            display: flex;
+            gap: 2px;
+            background: #d4b48c;
+            padding: 2px;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 12px;
+            background: #e8d5c4;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #5d4037;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .tab i {
+            margin-right: 6px;
+        }
+        
+        .tab.active {
+            background: #fff;
+            color: #8b4513;
+            font-weight: 600;
+        }
+        
+        .tab:first-child {
+            border-radius: 6px 0 0 0;
+        }
+        
+        .tab:last-child {
+            border-radius: 0 6px 0 0;
+        }
+        
+        .output-content {
+            background: #fff;
+            border: 2px solid #d4b48c;
+            border-top: none;
+            padding: 20px;
+            border-radius: 0 0 8px 8px;
+        }
+        
+        .output-content textarea {
+            min-height: 400px;
+            background: #f5f5f5;
+            font-family: 'Monaco', 'Menlo', monospace;
+        }
+        
+        .validation-panel {
+            background: #fff3e0;
+            border-left: 4px solid #8b4513;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .validation-panel h3 {
+            font-family: 'Cinzel', serif;
+            color: #8b4513;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        #validationOutput {
+            background: #fff;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .preview-box {
+            background: #fff9f2;
+            border: 2px dashed #d4b48c;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .preview-glyph {
+            font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+            font-size: 4rem;
+            color: #8b4513;
+            margin: 10px 0;
+        }
+        
+        .help-text {
+            background: #e8f5e9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .help-text kbd {
+            background: #2c1e0e;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #8b6b4f;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <span class="badge">𓂀 With JSesh Image Support • 20+ Field CSV</span>
+            <h1>
+                <span>𓏞</span>
+                Gardiner Sign List Converter
+            </h1>
+            <p class="subtitle">Convert CSV data to JavaScript with optional JSesh image paths</p>
+        </header>
+        
+        <div class="stats-panel" id="statsPanel">
+            <div class="stat-item">
+                <div class="stat-value" id="totalEntries">0</div>
+                <div class="stat-label">Entries Loaded</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="nextId">100</div>
+                <div class="stat-label">Next ID</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="validEntries">0</div>
+                <div class="stat-label">Valid</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="warningCount">0</div>
+                <div class="stat-label">Warnings</div>
+            </div>
+        </div>
+        
+        <div class="main-grid">
+            <div class="card">
+                <h2>
+                    <i class="fas fa-table"></i>
+                    CSV Input
+                </h2>
+                <p style="margin-bottom: 10px; color: #666;">Paste your CSV data below. First row must be headers.</p>
+                <textarea id="csvInput" placeholder="gardiner_code;hieroglyph;transliteration;translation;category;period;pronunciation;examples;object_name;description;notes;supplementary_note;descendants;etymology;demotic;hieratic;references;conjunctions;numbers;countries
+A1;𓀀;zꜣ j;Seated man;people;all;/zuːʀ/ → /suːʔ/;𓀀 (zꜣ) - son;Seated man;Determinative for man;This word can be placed after a type of person;;Coptic: ⲥⲁ- (sa-);Speculatively, Ehret hypothesises;;;Faulkner (1962);;1;Egypt"></textarea>
+                
+                <div class="button-group">
+                    <button onclick="loadSampleData()">
+                        <i class="fas fa-folder-open"></i>
+                        Load Sample
+                    </button>
+                    <button onclick="clearInput()" class="secondary">
+                        <i class="fas fa-trash-alt"></i>
+                        Clear
+                    </button>
+                </div>
+                
+                <div class="help-text">
+                    <strong>📌 CSV Format (semicolon-separated):</strong><br>
+                    <kbd>gardiner_code</kbd> - e.g., A1, D4, G5<br>
+                    <kbd>hieroglyph</kbd> - Actual Unicode character<br>
+                    <kbd>transliteration</kbd> - Phonetic values<br>
+                    <kbd>translation</kbd> - Meaning/function description<br>
+                    <kbd>category</kbd> - people, deities, animals, nature, objects, symbols, body, concepts, allophones, numbers, royalty<br>
+                    <kbd>period</kbd> - all, old, middle, new, late, ptolemaic<br>
+                    <kbd>pronunciation</kbd> - IPA or conventional pronunciation<br>
+                    <kbd>examples</kbd> - Usage examples with hieroglyphs<br>
+                    <kbd>object_name</kbd> - Brief name of depicted object<br>
+                    <kbd>description</kbd> - Detailed description<br>
+                    <kbd>notes</kbd> - Additional notes<br>
+                    <kbd>supplementary_note</kbd> - Supplementary information<br>
+                    <kbd>descendants</kbd> - Coptic or other descendants<br>
+                    <kbd>etymology</kbd> - Etymological information<br>
+                    <kbd>demotic</kbd> - Demotic script equivalent<br>
+                    <kbd>hieratic</kbd> - Hieratic script equivalent<br>
+                    <kbd>references</kbd> - Academic citations<br>
+                    <kbd>conjunctions</kbd> - Grammatical usage<br>
+                    <kbd>numbers</kbd> - Numerical values<br>
+                    <kbd>countries</kbd> - Geographic associations
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>
+                    <i class="fas fa-cog"></i>
+                    Converter Settings
+                </h2>
+                
+                <div class="control-row">
+                    <div class="control-group">
+                        <label><i class="fas fa-hashtag"></i> Starting ID:</label>
+                        <input type="number" id="startId" value="100" min="1">
+                        <p style="font-size: 0.85rem; color: #666; margin-top: 5px;">Current max ID: 99</p>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label><i class="fas fa-list"></i> Batch Size:</label>
+                        <select id="batchSize">
+                            <option value="10">10 entries</option>
+                            <option value="25" selected>25 entries</option>
+                            <option value="50">50 entries</option>
+                            <option value="100">100 entries</option>
+                            <option value="all">All entries</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="control-row">
+                    <div class="control-group">
+                        <label><i class="fas fa-tag"></i> Default Category:</label>
+                        <select id="defaultCategory">
+                            <option value="symbols">symbols (default)</option>
+                            <option value="people">people</option>
+                            <option value="deities">deities</option>
+                            <option value="animals">animals</option>
+                            <option value="nature">nature</option>
+                            <option value="objects">objects</option>
+                            <option value="body">body parts</option>
+                            <option value="concepts">concepts</option>
+                            <option value="allophones">allophones</option>
+                            <option value="numbers">numbers</option>
+                            <option value="royalty">royalty</option>
+                        </select>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label><i class="fas fa-clock"></i> Default Period:</label>
+                        <select id="defaultPeriod">
+                            <option value="all">all periods (default)</option>
+                            <option value="old">Old Kingdom</option>
+                            <option value="middle">Middle Kingdom</option>
+                            <option value="new">New Kingdom</option>
+                            <option value="late">Late Period</option>
+                            <option value="ptolemaic">Ptolemaic</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button onclick="validateData()" class="secondary">
+                        <i class="fas fa-check-circle"></i>
+                        Validate Data
+                    </button>
+                    <button onclick="resetSettings()" class="secondary">
+                        <i class="fas fa-undo-alt"></i>
+                        Reset
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- JSesh Batch Export Panel -->
+        <div class="batch-export-panel">
+            <h3>
+                <i class="fas fa-images"></i>
+                JSesh Batch Export Configuration
+            </h3>
+            <p>Configure how JSesh images will be referenced in your dictionary entries.</p>
+            
+            <div class="control-row">
+                <div class="control-group">
+                    <label><i class="fas fa-link"></i> Image Path Pattern:</label>
+                    <input type="text" id="imagePathPattern" class="image-pattern-input" value="images/hieroglyphs/{id}.png" placeholder="e.g., images/hieroglyphs/{id}.png or images/{gardiner}.png">
+                    <p style="font-size: 0.85rem; color: #666;">Use <kbd>{id}</kbd> for word ID or <kbd>{gardiner}</kbd> for Gardiner code</p>
+                </div>
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <div class="button-group">
+                    <button onclick="previewImagePaths()" class="secondary">
+                        <i class="fas fa-eye"></i>
+                        Preview Paths
+                    </button>
+                    <button onclick="generateBatchUpdateCode()" class="success">
+                        <i class="fas fa-bolt"></i>
+                        Generate Batch Update Code
+                    </button>
+                </div>
+            </div>
+            
+            <div id="imagePreview" class="image-preview" style="display: none;">
+                <!-- Preview will appear here -->
+            </div>
+            
+            <div id="batchCodeOutput" class="code-snippet" style="display: none;">
+                <!-- Batch update code will appear here -->
+            </div>
+        </div>
+        
+        <div class="button-group" style="justify-content: center;">
+            <button onclick="convertToDictionary()">
+                <i class="fas fa-book"></i>
+                Generate Dictionary Entries
+            </button>
+            <button onclick="convertToGlyphDB()">
+                <i class="fas fa-database"></i>
+                Generate Glyph DB Entries
+            </button>
+            <button onclick="convertBoth()" class="success">
+                <i class="fas fa-bolt"></i>
+                Generate BOTH
+            </button>
+        </div>
+        
+        <div class="output-section">
+            <div class="output-tabs">
+                <button class="tab active" onclick="showTab('dictionary')">
+                    <i class="fas fa-book"></i> Dictionary Output
+                </button>
+                <button class="tab" onclick="showTab('glyphdb')">
+                    <i class="fas fa-database"></i> Glyph DB Output
+                </button>
+                <button class="tab" onclick="showTab('batch')">
+                    <i class="fas fa-code"></i> Batch Update Code
+                </button>
+            </div>
+            
+            <div class="output-content">
+                <div id="dictionaryTab" style="display: block;">
+                    <textarea id="dictionaryOutput" readonly placeholder="Dictionary entries will appear here..."></textarea>
+                    <div class="button-group">
+                        <button onclick="copyToClipboard('dictionaryOutput')" class="secondary">
+                            <i class="fas fa-copy"></i>
+                            Copy to Clipboard
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="glyphDBTab" style="display: none;">
+                    <textarea id="glyphDBOutput" readonly placeholder="Glyph database entries will appear here..."></textarea>
+                    <div class="button-group">
+                        <button onclick="copyToClipboard('glyphDBOutput')" class="secondary">
+                            <i class="fas fa-copy"></i>
+                            Copy to Clipboard
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="batchTab" style="display: none;">
+                    <textarea id="batchOutput" readonly placeholder="Batch update code will appear here..." style="min-height: 300px;"></textarea>
+                    <div class="button-group">
+                        <button onclick="copyToClipboard('batchOutput')" class="secondary">
+                            <i class="fas fa-copy"></i>
+                            Copy to Clipboard
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="validation-panel">
+            <h3>
+                <i class="fas fa-clipboard-check"></i>
+                Validation Results
+            </h3>
+            <pre id="validationOutput">No data validated yet. Click "Validate Data" to check your CSV.</pre>
+        </div>
+        
+        <div class="preview-box" id="previewBox">
+            <div class="preview-glyph" id="previewGlyph">𓀀</div>
+            <div id="previewText">Preview will appear here as you work</div>
+        </div>
+        
+        <div class="footer">
+            <p>𓋹 Designed for the Ancient Lexicon Project • With JSesh image support • 20+ field CSV</p>
+            <p style="font-size: 0.8rem; margin-top: 10px;">
+                <i class="fas fa-info-circle"></i> 
+                Current max ID: 99 | Next available: 100 | Total Gardiner signs: 763 | Batch size: 25 entries
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Current state
+        let currentData = [];
+        let validationResults = { valid: 0, warnings: 0, errors: 0 };
+        
+        function parseCSV(csvText) {
+            const lines = csvText.trim().split('\n');
+            if (lines.length === 0) return [];
+            
+            // Use semicolon as delimiter
+            const headers = lines[0].split(';').map(h => h.trim().toLowerCase());
+            const data = [];
+            
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i].trim()) continue;
+                
+                // Handle quoted fields properly with semicolon delimiter
+                const values = [];
+                let inQuote = false;
+                let currentValue = '';
+                
+                for (let char of lines[i]) {
+                    if (char === '"' && !inQuote) {
+                        inQuote = true;
+                    } else if (char === '"' && inQuote) {
+                        inQuote = false;
+                    } else if (char === ';' && !inQuote) {
+                        values.push(currentValue.trim());
+                        currentValue = '';
+                    } else {
+                        currentValue += char;
+                    }
+                }
+                values.push(currentValue.trim());
+                
+                const row = {};
+                headers.forEach((header, index) => {
+                    row[header] = values[index] || '';
+                });
+                data.push(row);
+            }
+            
+            return data;
+        }
+        
+        function updateStats() {
+            document.getElementById('totalEntries').textContent = currentData.length;
+            document.getElementById('nextId').textContent = parseInt(document.getElementById('startId').value) + currentData.length;
+            document.getElementById('validEntries').textContent = validationResults.valid || 0;
+            document.getElementById('warningCount').textContent = (validationResults.warnings || 0) + (validationResults.errors || 0);
+        }
+        
+        function validateData() {
+            const csv = document.getElementById('csvInput').value;
+            if (!csv.trim()) {
+                document.getElementById('validationOutput').innerHTML = '⚠️ Please enter CSV data first.';
+                return;
+            }
+            
+            currentData = parseCSV(csv);
+            const warnings = [];
+            const errors = [];
+            const validEntries = [];
+            
+            // Check each row
+            currentData.forEach((row, index) => {
+                let rowValid = true;
+                
+                // Required fields
+                if (!row.gardiner_code) {
+                    errors.push(`Row ${index + 1}: Missing Gardiner code`);
+                    rowValid = false;
+                }
+                
+                if (!row.hieroglyph) {
+                    errors.push(`Row ${index + 1}: Missing hieroglyph`);
+                    rowValid = false;
+                } else {
+                    // Check if hieroglyph is in the correct Unicode range
+                    const codePoint = row.hieroglyph.codePointAt(0);
+                    if (codePoint < 0x13000 || codePoint > 0x1342F) {
+                        warnings.push(`Row ${index + 1}: Hieroglyph "${row.hieroglyph}" may not be in Egyptian range (U+13000–U+1342F)`);
+                    }
+                }
+                
+                // Optional but recommended fields
+                if (!row.translation && !row.object_name && !row.description) {
+                    warnings.push(`Row ${index + 1}: No description provided`);
+                }
+                
+                // Check category against known values
+                if (row.category) {
+                    const validCategories = ['people', 'deities', 'animals', 'nature', 'objects', 'symbols', 'body', 'concepts', 'allophones', 'numbers', 'royalty'];
+                    if (!validCategories.includes(row.category.toLowerCase())) {
+                        warnings.push(`Row ${index + 1}: Category "${row.category}" may not be recognized`);
+                    }
+                }
+                
+                if (rowValid) {
+                    validEntries.push(row);
+                }
+            });
+            
+            validationResults = {
+                valid: validEntries.length,
+                warnings: warnings.length,
+                errors: errors.length
+            };
+            
+            let output = '';
+            if (errors.length > 0) {
+                output += '❌ ERRORS:\n' + errors.map(e => `  • ${e}`).join('\n') + '\n\n';
+            }
+            if (warnings.length > 0) {
+                output += '⚠️ WARNINGS:\n' + warnings.map(w => `  • ${w}`).join('\n') + '\n\n';
+            }
+            if (errors.length === 0 && warnings.length === 0) {
+                output += '✅ All data validated successfully! No issues found.\n\n';
+            }
+            
+            output += `📊 SUMMARY:\n`;
+            output += `  Total entries: ${currentData.length}\n`;
+            output += `  Valid entries: ${validEntries.length}\n`;
+            output += `  Warnings: ${warnings.length}\n`;
+            output += `  Errors: ${errors.length}\n`;
+            output += `\n📌 Next ID: ${parseInt(document.getElementById('startId').value) + currentData.length}`;
+            
+            document.getElementById('validationOutput').innerHTML = output;
+            updateStats();
+            
+            // Show preview of first glyph
+            if (currentData.length > 0 && currentData[0].hieroglyph) {
+                document.getElementById('previewGlyph').textContent = currentData[0].hieroglyph;
+                document.getElementById('previewText').innerHTML = `First glyph: ${currentData[0].gardiner_code || 'Unknown'} - ${currentData[0].object_name || currentData[0].translation || ''}`;
+            }
+        }
+        
+        function convertToDictionary() {
+            if (currentData.length === 0) {
+                validateData();
+                if (currentData.length === 0) return;
+            }
+            
+            const startId = parseInt(document.getElementById('startId').value);
+            const defaultCategory = document.getElementById('defaultCategory').value;
+            const defaultPeriod = document.getElementById('defaultPeriod').value;
+            const batchSize = document.getElementById('batchSize').value;
+            
+            // Determine how many entries to process
+            let entriesToProcess = currentData;
+            if (batchSize !== 'all') {
+                const size = parseInt(batchSize);
+                entriesToProcess = currentData.slice(0, size);
+            }
+            
+            let output = '';
+            
+            entriesToProcess.forEach((row, index) => {
+                const id = startId + index;
+                const hieroglyph = row.hieroglyph || '';
+                const transliteration = row.transliteration || '';
+                const translation = row.translation || row.description || 'Gardiner sign';
+                const category = row.category || defaultCategory;
+                const period = row.period || defaultPeriod;
+                const gardiner = row.gardiner_code || '';
+                const pronunciation = row.pronunciation || '';
+                const examples = row.examples ? row.examples.replace(/"/g, '\\"') : '';
+                const object_name = row.object_name || '';
+                const description = row.description || '';
+                const notes = row.notes || '';
+                const supplementary_note = row.supplementary_note || '';
+                const descendants = row.descendants || '';
+                const etymology = row.etymology || '';
+                const demotic = row.demotic || '';
+                const hieratic = row.hieratic || '';
+                const references = row.references || '';
+                const conjunctions = row.conjunctions || '';
+                const numbers = row.numbers || '';
+                const countries = row.countries || '';
+                
+                output += `        {\n`;
+                output += `            id: ${id},\n`;
+                output += `            hieroglyph: "${hieroglyph}",\n`;
+                output += `            transliteration: "${transliteration}",\n`;
+                output += `            translation: "${translation}",\n`;
+                output += `            category: "${category}",\n`;
+                output += `            period: "${period}",\n`;
+                output += `            gardiner: "${gardiner}",\n`;
+                output += `            pronunciation: "${pronunciation}",\n`;
+                output += `            examples: "${examples}",\n`;
+                
+                // Only add optional fields if they have content
+                if (object_name) output += `            object_name: "${object_name}",\n`;
+                if (description) output += `            description: "${description}",\n`;
+                if (notes) output += `            notes: "${notes}",\n`;
+                if (supplementary_note) output += `            supplementary_note: "${supplementary_note}",\n`;
+                if (descendants) output += `            descendants: "${descendants}",\n`;
+                if (etymology) output += `            etymology: "${etymology}",\n`;
+                if (demotic) output += `            demotic: "${demotic}",\n`;
+                if (hieratic) output += `            hieratic: "${hieratic}",\n`;
+                if (references) output += `            references: "${references}",\n`;
+                if (conjunctions) output += `            conjunctions: "${conjunctions}",\n`;
+                if (numbers) output += `            numbers: "${numbers}",\n`;
+                if (countries) output += `            countries: "${countries}",\n`;
+                
+                // Remove trailing comma and close the object
+                output = output.replace(/,\n$/, '\n');
+                output += `        }${index < entriesToProcess.length - 1 ? ',' : ''}\n`;
+            });
+            
+            document.getElementById('dictionaryOutput').value = output;
+            showTab('dictionary');
+            
+            updateStatus(`Generated ${entriesToProcess.length} dictionary entries (IDs ${startId} to ${startId + entriesToProcess.length - 1})`);
+        }
+        
+        function convertToGlyphDB() {
+            if (currentData.length === 0) {
+                validateData();
+                if (currentData.length === 0) return;
+            }
+            
+            const defaultCategory = document.getElementById('defaultCategory').value;
+            const batchSize = document.getElementById('batchSize').value;
+            
+            // Determine how many entries to process
+            let entriesToProcess = currentData;
+            if (batchSize !== 'all') {
+                const size = parseInt(batchSize);
+                entriesToProcess = currentData.slice(0, size);
+            }
+            
+            let output = '';
+            
+            entriesToProcess.forEach((row, index) => {
+                const hieroglyph = row.hieroglyph || '';
+                const gardiner = row.gardiner_code || '';
+                const object_name = row.object_name || row.translation || 'Gardiner sign';
+                const category = row.category || defaultCategory;
+                const pronunciation = row.pronunciation || '';
+                const description = row.description || row.translation || '';
+                const notes = row.notes || '';
+                const etymology = row.etymology || '';
+                const descendants = row.descendants || '';
+                const demotic = row.demotic || '';
+                const hieratic = row.hieratic || '';
+                const references = row.references || '';
+                
+                output += `    "${hieroglyph}": { \n`;
+                output += `        gardiner: "${gardiner}",\n`;
+                output += `        name: "${object_name}",\n`;
+                output += `        category: "${category}",\n`;
+                output += `        pronunciation: "${pronunciation}",\n`;
+                output += `        description: "${description}",\n`;
+                if (notes) output += `        notes: "${notes}",\n`;
+                if (etymology) output += `        etymology: "${etymology}",\n`;
+                if (descendants) output += `        descendants: "${descendants}",\n`;
+                if (demotic) output += `        demotic: "${demotic}",\n`;
+                if (hieratic) output += `        hieratic: "${hieratic}",\n`;
+                if (references) output += `        references: "${references}",\n`;
+                
+                // Remove trailing comma if last field had one
+                output = output.replace(/,\n$/, '\n');
+                output += `    }${index < entriesToProcess.length - 1 ? ',' : ''}\n`;
+            });
+            
+            document.getElementById('glyphDBOutput').value = output;
+            showTab('glyphdb');
+            
+            updateStatus(`Generated ${entriesToProcess.length} glyph database entries`);
+        }
+        
+        function convertBoth() {
+            convertToDictionary();
+            convertToGlyphDB();
+        }
+        
+        function previewImagePaths() {
+            if (currentData.length === 0) {
+                validateData();
+                if (currentData.length === 0) return;
+            }
+            
+            const pattern = document.getElementById('imagePathPattern').value;
+            const startId = parseInt(document.getElementById('startId').value);
+            const batchSize = document.getElementById('batchSize').value;
+            
+            // Determine how many entries to preview
+            let entriesToPreview = currentData;
+            if (batchSize !== 'all') {
+                const size = parseInt(batchSize);
+                entriesToPreview = currentData.slice(0, size);
+            }
+            
+            const preview = document.getElementById('imagePreview');
+            const previewContainer = preview;
+            
+            previewContainer.innerHTML = '';
+            previewContainer.style.display = 'flex';
+            
+            // Show preview entries
+            const previewCount = Math.min(20, entriesToPreview.length);
+            
+            for (let i = 0; i < previewCount; i++) {
+                const row = entriesToPreview[i];
+                const id = startId + i;
+                let imagePath = pattern
+                    .replace('{id}', id)
+                    .replace('{gardiner}', row.gardiner_code || '');
+                
+                const item = document.createElement('div');
+                item.className = 'preview-item';
+                item.innerHTML = `
+                    <span class="preview-glyph-small">${row.hieroglyph || '?'}</span>
+                    <span style="font-weight: bold;">ID: ${id}</span>
+                    <span style="font-size: 10px;">${row.gardiner_code || ''}</span>
+                    <span style="font-size: 10px; color: #666;">${imagePath}</span>
+                `;
+                previewContainer.appendChild(item);
+            }
+            
+            if (entriesToPreview.length > previewCount) {
+                const more = document.createElement('div');
+                more.className = 'preview-item';
+                more.innerHTML = `<span>... and ${entriesToPreview.length - previewCount} more</span>`;
+                previewContainer.appendChild(more);
+            }
+            
+            updateStatus(`Previewing ${entriesToPreview.length} image paths`);
+        }
+        
+        function generateBatchUpdateCode() {
+            if (currentData.length === 0) {
+                validateData();
+                if (currentData.length === 0) return;
+            }
+            
+            const pattern = document.getElementById('imagePathPattern').value;
+            const startId = parseInt(document.getElementById('startId').value);
+            const batchSize = document.getElementById('batchSize').value;
+            
+            // Determine how many entries to process
+            let entriesToProcess = currentData;
+            if (batchSize !== 'all') {
+                const size = parseInt(batchSize);
+                entriesToProcess = currentData.slice(0, size);
+            }
+            
+            // Generate array of IDs
+            const ids = [];
+            for (let i = 0; i < entriesToProcess.length; i++) {
+                ids.push(startId + i);
+            }
+            
+            // Generate the batch update function call
+            const batchCode = `// =============== BATCH JSESH IMAGE UPDATE ===============
+// Add this after your egyptianWords array
+
+// First, add the helper function if you haven't already:
+function addJseshImagesToWords(wordIds, imagePathPattern) {
+    let updatedCount = 0;
+    wordIds.forEach(id => {
+        const word = egyptianWords.find(w => w.id === id);
+        if (word) {
+            word.jseshImage = imagePathPattern.replace('{id}', id);
+            updatedCount++;
+        }
+    });
+    console.log(\`✅ Updated \${updatedCount} words with JSesh images\`);
+    return updatedCount;
+}
+
+// Then call it for these IDs:
+addJseshImagesToWords(
+    [${ids.join(', ')}], // IDs ${startId} to ${startId + entriesToProcess.length - 1}
+    "${pattern}"
+);`;
+            
+            document.getElementById('batchOutput').value = batchCode;
+            showTab('batch');
+            
+            updateStatus(`Generated batch update code for ${entriesToProcess.length} entries`);
+        }
+        
+        function updateStatus(message) {
+            const output = document.getElementById('validationOutput');
+            output.innerHTML = `📢 ${message}\n\n` + output.innerHTML;
+        }
+        
+        function loadSampleData() {
+            const sample = `gardiner_code;hieroglyph;transliteration;translation;category;period;pronunciation;examples;object_name;description;notes;supplementary_note;descendants;etymology;demotic;hieratic;references;conjunctions;numbers;countries
+A1;𓀀;zꜣ j;Seated man;people;all;/zuːʀ/ → /suːʔ/;𓀀 (zꜣ) - son;Seated man;Determinative for man;This word can be placed after a type of person;;Coptic: ⲥⲁ- (sa-);Speculatively, Ehret hypothesises;;;Faulkner (1962);;1;Egypt
+A2;𓀁;j/sḏd/mdw;Man with hand to mouth;people;all;/j/ → /sḏd/ → /mdw/;𓀁 (wnm) - eat;Man with hand to mouth;Determinative for mouth activities;is pronounced 'j' as a vocative interjection;;Old Coptic: ⲏⲓ (ēi);From Proto-Afroasiatic;;;;;;
+A23;𓀛;;King with staff and mace;royalty;all;;;King with mace;Determinative for monarch and ruler;;;;;;;Gardiner (1957);;;
+G1;𓄿;ꜣ;Egyptian vulture;allophones;all;/ʀaː/ → /aː/;𓄿 (ꜣ) - vulture;Vulture;Uniliteral phonogram for 'ꜣ';;;;;;;Faulkner (1962);;;`;
+            
+            document.getElementById('csvInput').value = sample;
+            validateData();
+        }
+        
+        function clearInput() {
+            document.getElementById('csvInput').value = '';
+            currentData = [];
+            validationResults = { valid: 0, warnings: 0, errors: 0 };
+            document.getElementById('validationOutput').innerHTML = 'Input cleared.';
+            document.getElementById('dictionaryOutput').value = '';
+            document.getElementById('glyphDBOutput').value = '';
+            document.getElementById('batchOutput').value = '';
+            document.getElementById('imagePreview').style.display = 'none';
+            document.getElementById('batchCodeOutput').style.display = 'none';
+            document.getElementById('previewGlyph').textContent = '𓀀';
+            document.getElementById('previewText').innerHTML = 'Preview will appear here as you work';
+            updateStats();
+        }
+        
+        function resetSettings() {
+            document.getElementById('startId').value = '100';
+            document.getElementById('batchSize').value = '25';
+            document.getElementById('defaultCategory').value = 'symbols';
+            document.getElementById('defaultPeriod').value = 'all';
+            document.getElementById('imagePathPattern').value = 'images/hieroglyphs/{id}.png';
+        }
+        
+        function showTab(tabName) {
+            const dictTab = document.getElementById('dictionaryTab');
+            const glyphTab = document.getElementById('glyphDBTab');
+            const batchTab = document.getElementById('batchTab');
+            const tabs = document.querySelectorAll('.tab');
+            
+            dictTab.style.display = 'none';
+            glyphTab.style.display = 'none';
+            batchTab.style.display = 'none';
+            
+            tabs.forEach(t => t.classList.remove('active'));
+            
+            if (tabName === 'dictionary') {
+                dictTab.style.display = 'block';
+                tabs[0].classList.add('active');
+            } else if (tabName === 'glyphdb') {
+                glyphTab.style.display = 'block';
+                tabs[1].classList.add('active');
+            } else {
+                batchTab.style.display = 'block';
+                tabs[2].classList.add('active');
+            }
+        }
+        
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
+            element.select();
+            document.execCommand('copy');
+            
+            // Show feedback
+            const button = event.target.closest('button');
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            setTimeout(() => {
+                button.innerHTML = originalText;
+            }, 2000);
+        }
+        
+        // Initialize
+        resetSettings();
+        loadSampleData();
+    </script>
+</body>
+</html>

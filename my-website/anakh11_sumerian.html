@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sumerian Dictionary | 𒀭𒊺𒉀</title>
+    <meta name="description" content="Complete Sumerian cuneiform dictionary with translations and pronunciations">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Cardo:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Blue/Purple Sumerian Theme with Dark Mode -->
+    <style>
+        :root {
+            /* Blue/Purple Theme - Clay Tablets (Light Mode) */
+            --primary-color: #4a6fa5;
+            --primary-dark: #2e4a7a;
+            --secondary-color: #7d6ba8;
+            --accent-color: #9c89b8;
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a4a6a;
+            --bg-primary: #f0f4f8;
+            --bg-secondary: #e1e8f0;
+            --bg-tertiary: #d1dae5;
+            --border-color: #b8c5d6;
+            --card-bg: #ffffff;
+            --shadow-sm: 0 1px 3px rgba(74, 111, 165, 0.12);
+            --shadow: 0 4px 6px rgba(74, 111, 165, 0.15);
+            --shadow-lg: 0 10px 15px rgba(74, 111, 165, 0.2);
+            --shadow-xl: 0 20px 25px rgba(74, 111, 165, 0.25);
+            --gradient: linear-gradient(135deg, #4a6fa5 0%, #7d6ba8 50%, #9c89b8 100%);
+            --clay-bg: url('data:image/svg+xml,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><filter id="clayNoise"><feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100" height="100" filter="url(%23clayNoise)" opacity="0.08"/></svg>');
+            --radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            /* Blue/Purple Theme - Night Sky (Dark Mode) */
+            --primary-color: #7d9bc8;
+            --primary-dark: #4a6fa5;
+            --secondary-color: #9c89b8;
+            --accent-color: #b8a9d8;
+            --text-primary: #e6e9f0;
+            --text-secondary: #b0b8cc;
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #141a2d;
+            --bg-tertiary: #1d2740;
+            --border-color: #2d3a5a;
+            --card-bg: #1a2338;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.7);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.8);
+            --gradient: linear-gradient(135deg, #2e4a7a 0%, #5e4a8a 50%, #7d6ba8 100%);
+            --clay-bg: url('data:image/svg+xml,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><filter id="clayNoise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100" height="100" filter="url(%23clayNoise)" opacity="0.05"/></svg>');
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            background-image: var(--clay-bg);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar {
+            background-color: rgba(var(--bg-primary), 0.95);
+            border-bottom-color: var(--border-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .logo-icon {
+            color: var(--secondary-color);
+        }
+
+        .logo-text {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .badge {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .cuneiform-display {
+            font-family: 'Segoe UI Historic', 'Noto Sans Cuneiform', sans-serif;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 1rem;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* =============== SUMERIAN DICTIONARY IMPROVEMENTS =============== */
+/* Add this to the existing <style> block in anakh11_sumerian.html */
+
+/* Improved word cards grid */
+.words-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.word-card {
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.word-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 25px rgba(74, 111, 165, 0.2);
+    transform: translateY(-5px);
+}
+
+.cuneiform-display {
+    font-family: 'Segoe UI Historic', 'Noto Sans Cuneiform', sans-serif;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 1rem;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    padding: 1rem;
+}
+
+.cuneiform-glyph {
+    font-family: 'Segoe UI Historic', 'Noto Sans Cuneiform', sans-serif;
+    font-size: 3rem;
+}
+
+.word-content {
+    flex: 1;
+}
+
+.transliteration {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.translation {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.word-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Category color coding - matching Egyptian but with Sumerian theme */
+.category-tag {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.category-tag.nouns { background: #e3f2fd; color: #1976d2; }
+.category-tag.verbs { background: #f3e5f5; color: #7b1fa2; }
+.category-tag.deities { background: #e8f5e9; color: #388e3c; }
+.category-tag.places { background: #fff3e0; color: #f57c00; }
+.category-tag.animals { background: #e8f5e9; color: #2e7d32; }
+.category-tag.objects { background: #fce4ec; color: #c2185b; }
+.category-tag.concepts { background: #e8eaf6; color: #303f9f; }
+
+[data-theme="dark"] .category-tag.nouns { background: #1e3a5f; color: #90caf9; }
+[data-theme="dark"] .category-tag.verbs { background: #3e2d4d; color: #ce93d8; }
+[data-theme="dark"] .category-tag.deities { background: #1b3e2c; color: #81c784; }
+[data-theme="dark"] .category-tag.places { background: #3d2e1a; color: #ffb74d; }
+[data-theme="dark"] .category-tag.animals { background: #1b3e2c; color: #81c784; }
+[data-theme="dark"] .category-tag.objects { background: #3d1e2d; color: #f48fb1; }
+[data-theme="dark"] .category-tag.concepts { background: #2d2e5f; color: #9fa8da; }
+
+.period-tag {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+}
+
+.sign-name {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-family: monospace;
+}
+
+.pronunciation {
+    background: var(--bg-secondary);
+    padding: 8px 12px;
+    border-radius: var(--radius);
+    margin: 1rem 0;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.word-footer {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 0.875rem;
+    flex: 1;
+}
+
+/* Page info display */
+.page-info-top {
+    background: var(--bg-secondary);
+    padding: 1rem;
+    border-radius: var(--radius);
+    margin: 1rem 0;
+    text-align: center;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+/* Filter buttons active state */
+.filter-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* Modal styles */
+.word-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.word-modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.word-modal .modal-content {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    border: 2px solid var(--primary-color);
+}
+
+.word-modal.show .modal-content {
+    transform: translateY(0);
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+    background: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.word-detail-header {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    align-items: center;
+}
+
+.word-glyph-large {
+    font-size: 4rem;
+    color: var(--primary-color);
+    font-family: 'Segoe UI Historic', 'Noto Sans Cuneiform', sans-serif;
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    padding: 1rem;
+    min-width: 120px;
+    text-align: center;
+}
+
+.word-detail-info {
+    flex: 1;
+}
+
+.word-detail-info h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.word-detail-info h3 {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-weight: 400;
+}
+
+.word-detail-meta {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.word-detail-body {
+    padding: 2rem;
+}
+
+.detail-section {
+    margin-bottom: 1.5rem;
+}
+
+.detail-section h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.detail-section p {
+    margin: 0;
+    color: var(--text-primary);
+}
+
+/* No results styling */
+.no-results {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-secondary);
+    grid-column: 1 / -1;
+}
+
+.no-results i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+        .category-tag.nouns { background: #e3f2fd; color: #1976d2; }
+        .category-tag.verbs { background: #f3e5f5; color: #7b1fa2; }
+        .category-tag.deities { background: #e8f5e9; color: #388e3c; }
+        .category-tag.places { background: #fff3e0; color: #f57c00; }
+        .category-tag.objects { background: #fce4ec; color: #c2185b; }
+        .category-tag.concepts { background: #e8eaf6; color: #303f9f; }
+
+        [data-theme="dark"] .category-tag.nouns { background: #1e3a5f; color: #90caf9; }
+        [data-theme="dark"] .category-tag.verbs { background: #3e2d4d; color: #ce93d8; }
+        [data-theme="dark"] .category-tag.deities { background: #1b3e2c; color: #81c784; }
+        [data-theme="dark"] .category-tag.places { background: #3d2e1a; color: #ffb74d; }
+        [data-theme="dark"] .category-tag.objects { background: #3d1e2d; color: #f48fb1; }
+        [data-theme="dark"] .category-tag.concepts { background: #2d2e5f; color: #9fa8da; }
+
+        .period-tag {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+        }
+
+        .sign-name {
+            font-family: 'Cinzel', serif;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .word-card {
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+            background: var(--card-bg);
+        }
+
+        .word-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 8px 25px rgba(74, 111, 165, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, rgba(var(--bg-primary), 0.9) 0%, rgba(var(--bg-secondary), 0.9) 100%);
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        .footer {
+            background: var(--primary-dark);
+            color: white;
+        }
+
+        .footer a {
+            color: #d1dae5;
+        }
+
+        .footer a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-outline {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Cuneiform-specific styling */
+        .cuneiform-glyph {
+            font-size: 3rem;
+            line-height: 1;
+            font-family: 'Segoe UI Historic', 'Noto Sans Cuneiform', sans-serif;
+        }
+
+        /* Search container */
+        .search-container {
+            background: var(--bg-secondary);
+            border-color: var(--border-color);
+        }
+
+        .search-container input {
+            background: transparent;
+            color: var(--text-primary);
+        }
+
+        .search-container input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        /* Dropdown */
+        .dropdown-content {
+            background: var(--card-bg);
+            border-color: var(--border-color);
+        }
+
+        .dropdown-content a {
+            color: var(--text-primary);
+        }
+
+        .dropdown-content a:hover {
+            background: var(--bg-secondary);
+        }
+
+        /* Tool cards */
+        .tool-card {
+            background: var(--card-bg);
+            border-color: var(--border-color);
+        }
+
+        /* Select elements */
+        select {
+            background: var(--bg-secondary);
+            border-color: var(--border-color);
+            color: var(--text-primary);
+        }
+
+        option {
+            background: var(--card-bg);
+            color: var(--text-primary);
+        }
+
+        /* Pagination */
+        .page-link {
+            background: var(--bg-secondary);
+            border-color: var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .page-link:hover:not(.current) {
+            background: var(--bg-tertiary);
+            border-color: var(--primary-color);
+        }
+
+        .page-link.current {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Modal */
+        .word-modal .modal-content {
+            background: var(--card-bg);
+            border-color: var(--primary-color);
+        }
+
+        /* No results */
+        .no-results {
+            color: var(--text-secondary);
+        }
+    </style>
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>𒆠</text></svg>">
+</head>
+<body>
+
+<!-- =============== SUMERIAN NAVIGATION TEMPLATE =============== -->
+<!-- REPLACE the entire <nav class="navbar"> section in anakh11_sumerian.html with this: -->
+
+<nav class="navbar" aria-label="Main navigation">
+    <div class="container nav-container">
+        <!-- Sumerian-first logo layout -->
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <a href="sumerian.html" class="logo" aria-label="Ancient Lexicon Sumerian Home">
+                <span class="logo-icon" aria-hidden="true">𒆠</span>
+                <span class="logo-text">𒀭𒊺𒉀</span>
+            </a>
+            <a href="anakh11.html" class="logo" aria-label="Ancient Lexicon Egyptian Home">
+                <span class="logo-icon" aria-hidden="true">𓋹</span>
+                <span class="logo-text">ꜤANAḪ𓊹𓊹</span>
+            </a>
+        </div>
+        
+        <div class="nav-links">
+            <!-- Dictionaries Dropdown -->
+            <div class="nav-dropdown">
+                <button class="nav-link" aria-expanded="false" aria-controls="dictionaries-dropdown">
+                    <i class="fas fa-book" aria-hidden="true"></i> Dictionaries
+                </button>
+                <div class="dropdown-content" id="dictionaries-dropdown">
+                    <a href="anakh11.html"><i class="fas fa-eye" aria-hidden="true"></i> Egyptian</a>
+                    <a href="anakh11_sumerian.html" class="active"><i class="fas fa-tablet" aria-hidden="true"></i> Sumerian</a>
+                    <a href="hieroglyphs.html"><i class="fas fa-feather-alt" aria-hidden="true"></i> Hieroglyphs</a>
+                    <a href="cuneiform.html"><i class="fas fa-monument" aria-hidden="true"></i> Cuneiform</a>
+                </div>
+            </div>
+            
+            <!-- Standard Links -->
+            <a href="sumerian-grammar.html" class="nav-link">
+                <i class="fas fa-language" aria-hidden="true"></i> Grammar
+            </a>
+            <a href="sumerian-timeline.html" class="nav-link">
+                <i class="fas fa-hourglass-half" aria-hidden="true"></i> Timeline
+            </a>
+            <a href="mesopotamian-artifacts.html" class="nav-link">
+                <i class="fas fa-museum" aria-hidden="true"></i> Artifacts
+            </a>
+            
+            <!-- Theme Toggle -->
+            <button class="btn btn-outline" id="themeToggle" aria-label="Toggle dark/light mode">
+                <i class="fas fa-moon" aria-hidden="true"></i>
+            </button>
+            
+            <!-- Search -->
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search Sumerian words..." 
+                       aria-label="Search Sumerian words">
+                <button id="searchBtn" aria-label="Search">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Button -->
+        <button class="mobile-menu-btn" aria-label="Open mobile menu" aria-expanded="false">
+            <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+    </div>
+</nav>
+
+    <!-- Rest of your Sumerian page content remains the same -->
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="header-content">
+                <span class="badge">𒀭𒊺𒉀 Cuneiform Lexicon</span>
+                <h1>Sumerian Cuneiform Dictionary</h1>
+                <p class="header-subtitle">
+                    2,845 words from Early Dynastic to Old Babylonian period with sign names, 
+                    transliterations, and English translations
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dictionary Tools -->
+    <section class="dictionary-tools">
+        <div class="container">
+            <div class="tools-grid">
+                <!-- Filter section -->
+                <div class="tool-card">
+                    <h3><i class="fas fa-filter"></i> Filter by Category</h3>
+                    <div class="category-filters">
+                        <button class="filter-btn active" data-category="all">All Words</button>
+                        <button class="filter-btn" data-category="nouns">Nouns</button>
+                        <button class="filter-btn" data-category="verbs">Verbs</button>
+                        <button class="filter-btn" data-category="deities">Deities</button>
+                        <button class="filter-btn" data-category="places">Places</button>
+                        <button class="filter-btn" data-category="objects">Objects</button>
+                        <button class="filter-btn" data-category="concepts">Concepts</button>
+                    </div>
+                </div>
+                
+                <!-- Sort section -->
+                <div class="tool-card">
+                    <h3><i class="fas fa-sort-alpha-down"></i> Sort Options</h3>
+                    <div class="sort-options">
+                        <select id="sortSelect">
+                            <option value="cuneiform">By Cuneiform</option>
+                            <option value="transliteration">By Transliteration (A-Z)</option>
+                            <option value="translation">By Meaning (A-Z)</option>
+                            <option value="signName">By Sign Name</option>
+                        </select>
+                        <select id="periodSelect">
+                            <option value="all">All Periods</option>
+                            <option value="ed">Early Dynastic</option>
+                            <option value="oakk">Old Akkadian</option>
+                            <option value="ur3">Ur III</option>
+                            <option value="ob">Old Babylonian</option>
+                            <option value="mb">Middle Babylonian</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Export Button -->
+            <div class="export-section">
+                <button class="btn btn-outline" id="exportBtn">
+                    <i class="fas fa-download"></i> Export Current View
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Words container -->
+    <section class="words-section">
+        <div class="container">
+            <div id="pageInfo" class="page-info-top"></div>
+            <div id="wordsContainer" class="words-grid">
+                <!-- Words will be loaded here dynamically -->
+            </div>
+            
+            <!-- Pagination -->
+            <div id="pagination" class="pagination">
+                <!-- Pagination will be rendered here dynamically -->
+            </div>
+        </div>
+    </section>
+
+<!-- =============== UPDATED FOOTER =============== -->
+
+<footer class="footer" role="contentinfo">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <a href="sumerian.html" class="logo" style="margin: 0;">
+                        <span class="logo-icon">𒆠</span>
+                        <span class="logo-text">𒀭𒊺𒉀</span>
+                    </a>
+                    <a href="anakh11.html" class="logo" style="margin: 0;">
+                        <span class="logo-icon">𓋹</span>
+                        <span class="logo-text">ꜤANAḪ𓊹𓊹</span>
+                    </a>
+                </div>
+                <p class="footer-tagline">
+                    Preserving the languages of ancient civilisations through digital scholarship.
+                </p>
+                <div class="footer-social">
+                    <a href="#" class="social-link" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+                    <a href="#" class="social-link" aria-label="ResearchGate"><i class="fab fa-researchgate" aria-hidden="true"></i></a>
+                    <a href="#" class="social-link" aria-label="University"><i class="fas fa-university" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Main Pages</h4>
+                    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                    <a href="anakh11.html"><i class="fas fa-eye"></i> Egyptian</a>
+                    <a href="anakh11_sumerian.html"><i class="fas fa-tablet"></i> Sumerian</a>
+                    <a href="search.html"><i class="fas fa-search"></i> Cross-Search</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Sumerian Resources</h4>
+                    <a href="cuneiform-guide.html">Cuneiform Guide</a>
+                    <a href="sumerian-grammar.html">Grammar Rules</a>
+                    <a href="mesopotamian-timeline.html">Historical Timeline</a>
+                    <a href="sumerian-bibliography.html">Bibliography</a>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Dictionary Pages</h4>
+                    <a href="sumerian_a.html">A Words</a>
+                    <a href="sumerian_b.html">B Words</a>
+                    <a href="sumerian_d.html">D Words</a>
+                    <a href="sumerian_e.html">E Words</a>
+                    <a href="sumerian_g.html">G Words</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>H-M</h4>
+                    <a href="sumerian_h.html">Ḫ Words</a>
+                    <a href="sumerian_i.html">I Words</a>
+                    <a href="sumerian_k.html">K Words</a>
+                    <a href="sumerian_l.html">L Words</a>
+                    <a href="sumerian_m.html">M Words</a>
+                </div>
+
+                <div class="footer-column">
+                    <h4>N-S</h4>
+                    <a href="sumerian_n.html">N Words</a>
+                    <a href="sumerian_p.html">P Words</a>
+                    <a href="sumerian_r.html">R Words</a>
+                    <a href="sumerian_s.html">S Words</a>
+                    <a href="sumerian_sz.html">Š Words</a>
+                </div>
+
+                <div class="footer-column">
+                    <h4>T-Z</h4>
+                    <a href="sumerian_t.html">T Words</a>
+                    <a href="sumerian_u.html">U Words</a>
+                    <a href="sumerian_w.html">W Words</a>
+                    <a href="sumerian_y.html">Y Words</a>
+                    <a href="sumerian_z.html">Z Words</a>
+                </div>
+
+                <div class="footer-column">
+                    <h4># Numbers</h4>
+                    <a href="sumerian_numbers_1.html">1-60</a>
+                    <a href="sumerian_numbers_2.html">60-3600</a>
+                    <a href="sumerian_numbers_3.html">Fractions</a>
+                    <a href="sumerian_numbers_4.html">Mathematical Terms</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <a href="contact_1.html">Contribute</a>
+                    <a href="contact_2.html">Report Errors</a>
+                    <a href="contact_3.html">Contact Scholars</a>
+                    <a href="contact_4.html">Feedback</a>
+                    <a href="contact_5.html">Updates</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; <span id="current-year">2026</span> Ancient Lexicon Project. All rights reserved.</p>
+            <p class="tech-stack">
+                Based on: Gardiner's Sign List • Faulkner's Dictionary • ePSD • Cuneiform Digital Library • Pennsylvania Sumerian Dictionary
+            </p>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    
+
+    <script>
+        // ================ THEME TOGGLE FUNCTIONALITY ================
+        
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle?.querySelector('i');
+
+        // Check for saved theme or system preference
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('sumerianTheme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                if (themeIcon) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                }
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                if (themeIcon) {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                }
+            }
+        }
+
+        // Theme toggle event listener
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                
+                if (currentTheme === 'dark') {
+                    document.documentElement.removeAttribute('data-theme');
+                    themeIcon.classList.replace('fa-sun', 'fa-moon');
+                    localStorage.setItem('sumerianTheme', 'light');
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    themeIcon.classList.replace('fa-moon', 'fa-sun');
+                    localStorage.setItem('sumerianTheme', 'dark');
+                }
+            });
+        }
+
+        // Initialize theme on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeTheme();
+            
+            // Console greeting
+            console.log('%c𒆠 Welcome to Sumerian Lexicon!', 'color: #4a6fa5; font-size: 18px; font-weight: bold;');
+            console.log('%cExplore ancient Sumerian cuneiform words', 'color: #7d6ba8;');
+            
+            // Initialize Sumerian dictionary
+            initializeSumerianDictionary();
+            
+            // Initialize cuneiform tooltips
+            initCuneiformTooltips();
+        });
+
+        // ================ SUMERIAN DICTIONARY DATA ================
+        
+        const sumerianWords = [
+            {
+                id: 1,
+                cuneiform: "𒆠",
+                transliteration: "Ki",
+                translation: "earth, land, place",
+                category: "nouns",
+                period: "all",
+                signName: "KI",
+                pronunciation: "/ki/",
+                examples: "𒆠𒆠 (ki-ki) = everywhere; 𒆠𒂗𒄀 (ki-en-Ĝi(-r)) = Šumer"
+            },
+            {
+                id: 2,
+                cuneiform: "𒀭",
+                transliteration: "An",
+                translation: "sky, heaven; god An (supreme deity)",
+                category: "deities",
+                period: "all",
+                signName: "AN",
+                pronunciation: "/an/",
+                examples: "𒀭𒆠 (an-ki) = universe; 𒀭𒈾 (an-na) = sky"
+            },
+            {
+                id: 3,
+                cuneiform: "𒂗",
+                transliteration: "En",
+                translation: "lord, priest, master, (by extension) civilised person",
+                category: "nouns",
+                period: "ed",
+                signName: "EN",
+                pronunciation: "/en.lil/",
+                examples: "𒂗𒆤 (en-lil) = god of air/king of the gods of the Šumerian (literally 'Lord Air')"
+            },
+            {
+                id: 4,
+                cuneiform: "𒈗",
+                transliteration: "Lugal",
+                translation: "king, ruler, (literally 'big-man' or rather 'man-big')",
+                category: "nouns",
+                period: "ed",
+                signName: "LUGAL",
+                pronunciation: "/lu.ɡal/",
+                examples: "𒈗𒆠 (lugal-ki) = king of the land"
+            },
+            {
+                id: 5,
+                cuneiform: "𒀀",
+                transliteration: "A",
+                translation: "water, fluid, sperm, semen, offspring, child, watercourse",
+                category: "nouns",
+                period: "all",
+                signName: "A",
+                pronunciation: "/a/",
+                examples: "𒀀𒁍 (a-bu) = water pool"
+            },
+            {
+                id: 6,
+                cuneiform: "𒈬",
+                transliteration: "Mu",
+                translation: "name, year; to speak",
+                category: "concepts",
+                period: "all",
+                signName: "MU",
+                pronunciation: "/mu/",
+                examples: "𒈬𒅇 (mu-u₄) = year of the lord/king)"
+            },
+            {
+                id: 7,
+                cuneiform: "𒌉",
+                transliteration: "Dumu",
+                translation: "son, child",
+                category: "nouns",
+                period: "all",
+                signName: "DUMU",
+                pronunciation: "/du.mu/",
+                examples: "𒌉𒈨𒌍 (dumu-munus) = daughter"
+            },
+            {
+                id: 8,
+                cuneiform: "𒂍𒁾𒁀𒀀",
+                transliteration: "E₂-dub-ba-a, /Edubak⁠/",
+                translation: "house, temple",
+                category: "objects",
+                period: "all",
+                signName: "E₂",
+                pronunciation: "/eː/",
+                examples: "𒂍𒁾𒁀𒀀/𒂍𒀭 school, literally (house of tablets)/(e₂-an) = temple of An"
+            },
+            {
+                id: 9,
+                cuneiform: "𒆠𒂗𒂠/𒆠𒂗𒄀",
+                transliteration: "Ki-en-Ĝi(-r)",
+                translation: "Šumer (the land)",
+                category: "places",
+                period: "ed",
+                signName: "KI.EN.GIR",
+                pronunciation: "/ki.eŋ.i(-r)/",
+                examples: "𒆠𒂗𒂠/𒆠𒂗𒄀 (ki-en-Ĝi(-r)/Ĝi₁₅(-r)) = land of Šumer"
+            },
+            {
+                id: 10,
+                cuneiform: "𒅇",
+                transliteration: "Umun, U₃",
+                translation: "lord",
+                category: "concepts",
+                period: "all",
+                signName: "UMUN",
+                pronunciation: "/mu.u/",
+                examples: "𒈬𒅇 (mu-u₃) = year of the lord/king"
+            },
+            {
+                id: 11,
+                cuneiform: "𒌓",
+                transliteration: "U₄, U, Utu, Ud",
+                translation: "sun, day, summer, heat, fever",
+                category: "concepts",
+                period: "all",
+                signName: "U₄",
+                pronunciation: "/u/",
+                examples: "𒀭𒌓 = the Šumerian sun god"
+            },
+            {
+            id: 12,
+            cuneiform: "𒁍",
+            transliteration: "Bu",
+            translation: "to be thick, dense",
+            category: "verbs",
+            period: "all",
+            signName: "BU",
+            pronunciation: "/bu/",
+            examples: "𒁍𒈬 (bu-mu) = thick name (important person)"
+            }
+        ];
+
+        // Dictionary State Management
+        let currentPage = 1;
+        const itemsPerPage = 9;
+        let filteredWords = [...sumerianWords];
+        let currentCategory = 'all';
+        let currentPeriod = 'all';
+        let currentSort = 'cuneiform';
+
+        // Get current page from URL
+        function getCurrentPageFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const hashParams = new URLSearchParams(window.location.hash.substring(1));
+            
+            let page = parseInt(urlParams.get('page')) || parseInt(hashParams.get('page')) || 1;
+            return Math.max(1, page);
+        }
+
+        // Update URL with all filter states
+        function updateURLState() {
+            const params = new URLSearchParams();
+            if (currentPage > 1) params.set('page', currentPage);
+            if (currentCategory !== 'all') params.set('category', currentCategory);
+            if (currentPeriod !== 'all') params.set('period', currentPeriod);
+            if (currentSort !== 'cuneiform') params.set('sort', currentSort);
+            
+            const newHash = params.toString() ? `#${params.toString()}` : '';
+            const newURL = `${window.location.pathname}${newHash}`;
+            
+            if (history.pushState) {
+                window.history.replaceState(null, '', newURL);
+            }
+        }
+
+        // Parse URL state on load
+        function parseURLState() {
+            const hash = window.location.hash.substring(1);
+            const params = new URLSearchParams(hash);
+            
+            if (params.has('page')) currentPage = parseInt(params.get('page'));
+            if (params.has('category')) {
+                currentCategory = params.get('category');
+                // Update active filter button
+                const filterBtn = document.querySelector(`.filter-btn[data-category="${currentCategory}"]`);
+                if (filterBtn) {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    filterBtn.classList.add('active');
+                }
+            }
+            if (params.has('period')) {
+                currentPeriod = params.get('period');
+                const periodSelect = document.getElementById('periodSelect');
+                if (periodSelect) periodSelect.value = currentPeriod;
+            }
+            if (params.has('sort')) {
+                currentSort = params.get('sort');
+                const sortSelect = document.getElementById('sortSelect');
+                if (sortSelect) sortSelect.value = currentSort;
+            }
+        }
+
+        // Apply all filters and sorting
+        function applyFilters() {
+            // Filter by category
+            if (currentCategory === 'all') {
+                filteredWords = [...sumerianWords];
+            } else {
+                filteredWords = sumerianWords.filter(word => 
+                    word.category === currentCategory
+                );
+            }
+
+            // Filter by period
+            if (currentPeriod !== 'all') {
+                filteredWords = filteredWords.filter(word => 
+                    word.period === currentPeriod
+                );
+            }
+
+            // Apply sorting
+            sortWords(filteredWords, currentSort);
+
+            // Update display
+            displayWordsForPage(currentPage);
+            renderPagination();
+            updatePageInfo();
+            updateURLState();
+        }
+
+        // Sort words based on criteria
+        function sortWords(words, criteria) {
+            switch(criteria) {
+                case 'transliteration':
+                    words.sort((a, b) => a.transliteration.localeCompare(b.transliteration));
+                    break;
+                case 'translation':
+                    words.sort((a, b) => a.translation.localeCompare(b.translation));
+                    break;
+                case 'signName':
+                    words.sort((a, b) => a.signName.localeCompare(b.signName));
+                    break;
+                case 'cuneiform':
+                default:
+                    words.sort((a, b) => a.cuneiform.localeCompare(b.cuneiform));
+                    break;
+            }
+        }
+
+        // Get words for specific page
+        function getWordsForPage(pageNumber) {
+            const startIndex = (pageNumber - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            return {
+                words: filteredWords.slice(startIndex, endIndex),
+                totalPages: Math.ceil(filteredWords.length / itemsPerPage),
+                totalWords: filteredWords.length,
+                currentPage: pageNumber
+            };
+        }
+
+        // Display words for current page
+        function displayWordsForPage(pageNumber) {
+            const container = document.getElementById('wordsContainer');
+            if (!container) return;
+            
+            const pageData = getWordsForPage(pageNumber);
+            const wordsToShow = pageData.words;
+
+            container.innerHTML = '';
+
+            if (wordsToShow.length === 0) {
+                container.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-tablet"></i>
+                        <h3>No cuneiform words found</h3>
+                        <p>Try changing your filters or search term</p>
+                    </div>
+                `;
+                return;
+            }
+
+            wordsToShow.forEach(word => {
+                const wordCard = document.createElement('div');
+                wordCard.className = 'word-card';
+                wordCard.setAttribute('data-id', word.id);
+                wordCard.setAttribute('data-category', word.category);
+                
+                wordCard.innerHTML = `
+                    <div class="cuneiform-display cuneiform-glyph">${word.cuneiform}</div>
+                    <div class="word-content">
+                        <h3 class="transliteration">${word.transliteration}</h3>
+                        <p class="translation">${word.translation}</p>
+                        <div class="word-meta">
+                            <span class="category-tag ${word.category}">${word.category}</span>
+                            <span class="period-tag">${word.period}</span>
+                            <span class="sign-name">${word.signName}</span>
+                        </div>
+                        <div class="pronunciation">
+                            <i class="fas fa-volume-up"></i> ${word.pronunciation}
+                        </div>
+                        ${word.examples ? `
+                            <div class="word-examples">
+                                <h4><i class="fas fa-scroll"></i> Example:</h4>
+                                <p>${word.examples}</p>
+                            </div>
+                        ` : ''}
+                    </div>
+                    <div class="word-footer">
+                        <button class="btn btn-sm btn-outline view-details">
+                            <i class="fas fa-info-circle"></i> Details
+                        </button>
+                        <button class="btn btn-sm btn-outline add-favorite">
+                            <i class="far fa-star"></i> Save
+                        </button>
+                    </div>
+                `;
+                
+                container.appendChild(wordCard);
+            });
+            
+            // Add event listeners to word cards
+            attachWordCardListeners();
+        }
+
+        // Render pagination
+        function renderPagination() {
+            const paginationContainer = document.getElementById('pagination');
+            if (!paginationContainer) return;
+            
+            const totalPages = Math.ceil(filteredWords.length / itemsPerPage);
+            
+            if (totalPages <= 1) {
+                paginationContainer.innerHTML = '';
+                return;
+            }
+
+            let paginationHTML = '';
+            
+            // Previous button
+            if (currentPage > 1) {
+                paginationHTML += `<a href="#" class="page-link prev" data-page="${currentPage - 1}">
+                    <i class="fas fa-chevron-left"></i> Prev
+                </a>`;
+            }
+
+            // Page numbers
+            const maxVisiblePages = 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+            
+            if (endPage - startPage + 1 < maxVisiblePages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                if (i === currentPage) {
+                    paginationHTML += `<span class="page-link current">${i}</span>`;
+                } else {
+                    paginationHTML += `<a href="#" class="page-link" data-page="${i}">${i}</a>`;
+                }
+            }
+
+            // Next button
+            if (currentPage < totalPages) {
+                paginationHTML += `<a href="#" class="page-link next" data-page="${currentPage + 1}">
+                    Next <i class="fas fa-chevron-right"></i>
+                </a>`;
+            }
+
+            paginationContainer.innerHTML = paginationHTML;
+
+            // Add event listeners to pagination links
+            paginationContainer.querySelectorAll('.page-link[data-page]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = parseInt(this.dataset.page);
+                    if (!isNaN(page)) {
+                        currentPage = page;
+                        applyFilters();
+                        document.querySelector('.words-section')?.scrollIntoView({ 
+                            behavior: 'smooth' 
+                        });
+                    }
+                });
+            });
+        }
+
+        // Update page information
+        function updatePageInfo() {
+            const pageInfo = document.getElementById('pageInfo');
+            if (!pageInfo) return;
+            
+            const startIndex = (currentPage - 1) * itemsPerPage + 1;
+            const endIndex = Math.min(currentPage * itemsPerPage, filteredWords.length);
+            const totalWords = filteredWords.length;
+            
+            let infoText = `Showing ${startIndex}-${endIndex} of ${totalWords} Sumerian words`;
+            
+            if (currentCategory !== 'all') {
+                infoText += ` in ${currentCategory}`;
+            }
+            if (currentPeriod !== 'all') {
+                infoText += ` (${currentPeriod} Period)`;
+            }
+            
+            pageInfo.textContent = infoText;
+        }
+
+        // Enhanced search function
+        function performEnhancedSearch() {
+            const searchInput = document.getElementById('searchInput');
+            if (!searchInput) return;
+            
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            
+            if (searchTerm === '') {
+                filteredWords = [...sumerianWords];
+            } else {
+                filteredWords = sumerianWords.filter(word => 
+                    word.transliteration.toLowerCase().includes(searchTerm) ||
+                    word.translation.toLowerCase().includes(searchTerm) ||
+                    word.signName.toLowerCase().includes(searchTerm) ||
+                    word.category.toLowerCase().includes(searchTerm) ||
+                    (word.pronunciation && word.pronunciation.toLowerCase().includes(searchTerm)) ||
+                    (word.examples && word.examples.toLowerCase().includes(searchTerm))
+                );
+            }
+            
+            currentPage = 1;
+            sortWords(filteredWords, currentSort);
+            displayWordsForPage(currentPage);
+            renderPagination();
+            updatePageInfo();
+            updateURLState();
+        }
+
+        // Initialize Sumerian dictionary
+        function initializeSumerianDictionary() {
+            // Parse URL state first
+            parseURLState();
+            
+            // Set current page
+            currentPage = getCurrentPageFromURL();
+            
+            // Get DOM elements
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const sortSelect = document.getElementById('sortSelect');
+            const periodSelect = document.getElementById('periodSelect');
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            const exportBtn = document.getElementById('exportBtn');
+            const backToTop = document.getElementById('backToTop');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            // Initialize filter buttons
+            if (filterButtons.length > 0) {
+                filterButtons.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        filterButtons.forEach(b => b.classList.remove('active'));
+                        this.classList.add('active');
+                        currentCategory = this.dataset.category;
+                        currentPage = 1;
+                        applyFilters();
+                    });
+                });
+            }
+            
+            // Initialize sort dropdown
+            if (sortSelect) {
+                sortSelect.value = currentSort;
+                sortSelect.addEventListener('change', function() {
+                    currentSort = this.value;
+                    currentPage = 1;
+                    applyFilters();
+                });
+            }
+            
+            // Initialize period filter
+            if (periodSelect) {
+                periodSelect.value = currentPeriod;
+                periodSelect.addEventListener('change', function() {
+                    currentPeriod = this.value;
+                    currentPage = 1;
+                    applyFilters();
+                });
+            }
+            
+            // Initialize search functionality
+            if (searchBtn && searchInput) {
+                searchBtn.addEventListener('click', performEnhancedSearch);
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        performEnhancedSearch();
+                    }
+                });
+            }
+            
+            // Initialize export button
+            if (exportBtn) {
+                exportBtn.addEventListener('click', exportCurrentView);
+            }
+            
+            // Initialize back to top button
+            if (backToTop) {
+                window.addEventListener('scroll', () => {
+                    if (window.pageYOffset > 300) {
+                        backToTop.style.display = 'flex';
+                    } else {
+                        backToTop.style.display = 'none';
+                    }
+                });
+                
+                backToTop.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+            
+            // Initialize mobile menu
+            if (mobileMenuBtn && navLinks) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+            }
+            
+            // Initial render
+            applyFilters();
+        }
+
+        // Function to attach event listeners to word cards
+        function attachWordCardListeners() {
+            // View details buttons
+            document.querySelectorAll('.view-details').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const wordCard = this.closest('.word-card');
+                    const wordId = parseInt(wordCard.dataset.id);
+                    showWordDetails(wordId);
+                });
+            });
+            
+            // Favorite buttons
+            document.querySelectorAll('.add-favorite').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const wordCard = this.closest('.word-card');
+                    const wordId = parseInt(wordCard.dataset.id);
+                    toggleFavorite(wordId);
+                    
+                    // Toggle icon
+                    const icon = this.querySelector('i');
+                    if (icon.classList.contains('far')) {
+                        icon.classList.replace('far', 'fas');
+                        this.innerHTML = '<i class="fas fa-star"></i> Saved';
+                    } else {
+                        icon.classList.replace('fas', 'far');
+                        this.innerHTML = '<i class="far fa-star"></i> Save';
+                    }
+                });
+            });
+        }
+
+        // Function to show word details
+        function showWordDetails(wordId) {
+            const word = sumerianWords.find(w => w.id === wordId);
+            if (!word) return;
+            
+            // Create modal with word details
+            const modal = document.createElement('div');
+            modal.className = 'word-modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <button class="modal-close"><i class="fas fa-times"></i></button>
+                    <div class="word-detail-header">
+                        <div class="word-glyph-large cuneiform-glyph">
+                            ${word.cuneiform}
+                        </div>
+                        <div class="word-detail-info">
+                            <h2>${word.transliteration}</h2>
+                            <h3>${word.translation}</h3>
+                            <div class="word-detail-meta">
+                                <span class="category-tag ${word.category}">${word.category}</span>
+                                <span class="period-tag">${word.period}</span>
+                                <span class="sign-name">${word.signName}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="word-detail-body">
+                        <div class="detail-section">
+                            <h4><i class="fas fa-volume-up"></i> Pronunciation</h4>
+                            <p>${word.pronunciation}</p>
+                        </div>
+                        ${word.examples ? `
+                            <div class="detail-section">
+                                <h4><i class="fas fa-scroll"></i> Examples</h4>
+                                <p>${word.examples}</p>
+                            </div>
+                        ` : ''}
+                        <div class="detail-section">
+                            <h4><i class="fas fa-history"></i> Period</h4>
+                            <p>${getPeriodFullName(word.period)} Period</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4><i class="fas fa-signature"></i> Sign Name</h4>
+                            <p class="sign-name">${word.signName}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Add animation
+            setTimeout(() => modal.classList.add('show'), 10);
+            
+            // Close modal
+            modal.querySelector('.modal-close').addEventListener('click', () => {
+                modal.classList.remove('show');
+                setTimeout(() => modal.remove(), 300);
+            });
+            
+            // Close on background click
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('show');
+                    setTimeout(() => modal.remove(), 300);
+                }
+            });
+        }
+
+        // Helper function to get full period name
+        function getPeriodFullName(periodCode) {
+            const periods = {
+                'all': 'All Periods',
+                'ed': 'Early Dynastic',
+                'oakk': 'Old Akkadian',
+                'ur3': 'Ur III',
+                'ob': 'Old Babylonian',
+                'mb': 'Middle Babylonian'
+            };
+            return periods[periodCode] || periodCode;
+        }
+
+        // Function to toggle favorite
+        function toggleFavorite(wordId) {
+            let favorites = JSON.parse(localStorage.getItem('sumerianFavorites') || '[]');
+            
+            if (favorites.includes(wordId)) {
+                favorites = favorites.filter(id => id !== wordId);
+            } else {
+                favorites.push(wordId);
+            }
+            
+            localStorage.setItem('sumerianFavorites', JSON.stringify(favorites));
+        }
+
+        // ================ EXPORT FUNCTIONALITY ================
+
+        function exportCurrentView() {
+            const data = {
+                words: filteredWords,
+                filters: {
+                    category: currentCategory,
+                    period: currentPeriod,
+                    sort: currentSort,
+                    page: currentPage
+                },
+                timestamp: new Date().toISOString(),
+                totalWords: filteredWords.length
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `sumerian-dictionary-${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // ================ KEYBOARD SHORTCUTS ================
+
+        document.addEventListener('keydown', (e) => {
+            // Ctrl+F or Cmd+F for search
+            if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+                e.preventDefault();
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) searchInput.focus();
+            }
+            
+            // Escape to clear search
+            const activeElement = document.activeElement;
+            if (e.key === 'Escape' && activeElement.tagName === 'INPUT' && 
+                activeElement.id === 'searchInput') {
+                e.preventDefault();
+                activeElement.value = '';
+                performEnhancedSearch();
+            }
+            
+            // Arrow keys for pagination
+            if (e.key === 'ArrowLeft' && currentPage > 1) {
+                e.preventDefault();
+                currentPage--;
+                applyFilters();
+            }
+            
+            if (e.key === 'ArrowRight' && currentPage < Math.ceil(filteredWords.length / itemsPerPage)) {
+                e.preventDefault();
+                currentPage++;
+                applyFilters();
+            }
+        });
+
+        // Cuneiform tooltips
+        function initCuneiformTooltips() {
+            const cuneiforms = document.querySelectorAll('.cuneiform-glyph');
+            cuneiforms.forEach(glyph => {
+                glyph.addEventListener('mouseenter', (e) => {
+                    const text = e.target.textContent;
+                    showGlyphTooltip(e, text);
+                });
+                
+                glyph.addEventListener('mouseleave', () => {
+                    hideGlyphTooltip();
+                });
+            });
+        }
+
+        function showGlyphTooltip(event, text) {
+            let tooltip = document.getElementById('glyph-tooltip');
+            if (!tooltip) {
+                tooltip = document.createElement('div');
+                tooltip.id = 'glyph-tooltip';
+                tooltip.style.cssText = `
+                    position: absolute;
+                    background: var(--card-bg);
+                    border: 1px solid var(--border-color);
+                    padding: 10px;
+                    border-radius: 4px;
+                    box-shadow: var(--shadow);
+                    z-index: 10000;
+                    font-size: 14px;
+                    max-width: 200px;
+                    font-family: 'Segoe UI Historic', 'Noto Sans Cuneiform', sans-serif;
+                `;
+                document.body.appendChild(tooltip);
+            }
+            
+            // Find meaning
+            let meaning = "Sumerian cuneiform sign";
+            sumerianWords.forEach(word => {
+                if (word.cuneiform === text) {
+                    meaning = word.translation;
+                }
+            });
+            
+            tooltip.innerHTML = `<strong>${text}</strong><br>${meaning}`;
+            tooltip.style.left = `${event.pageX + 10}px`;
+            tooltip.style.top = `${event.pageY + 10}px`;
+            tooltip.style.display = 'block';
+        }
+
+        function hideGlyphTooltip() {
+            const tooltip = document.getElementById('glyph-tooltip');
+            if (tooltip) {
+                tooltip.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

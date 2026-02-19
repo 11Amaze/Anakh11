@@ -1,0 +1,2093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Egyptian Dictionary | ꜤANAḪ𓊹𓊹</title>
+    <meta name="description" content="Complete Egyptian hieroglyphic dictionary with translations and pronunciations">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Cardo:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- FIXED: Critical inline CSS for dictionary layout -->
+    <style>
+     /* =============== EGYPTIAN DICTIONARY IMPROVEMENTS =============== */
+
+/* Improved word cards grid */
+.words-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.word-card {
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.word-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 25px rgba(139, 69, 19, 0.2);
+    transform: translateY(-5px);
+}
+
+.hieroglyph-display {
+    font-family: 'Segoe UI Historic', 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 1rem;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    padding: 1rem;
+    line-height: 1.2;
+}
+
+/* Enhanced Glyph Debugger Animations */
+#glyphDebugPanel {
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Edit mode highlight */
+#editSection {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.word-content {
+    flex: 1;
+}
+
+.transliteration {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.translation {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.word-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Category color coding */
+.category-tag.nouns { background: #e3f2fd; color: #1976d2; }
+.category-tag.verbs { background: #f3e5f5; color: #7b1fa2; }
+.category-tag.deities { background: #e8f5e9; color: #388e3c; }
+.category-tag.places { background: #fff3e0; color: #f57c00; }
+.category-tag.animals { background: #e8f5e9; color: #2e7d32; }
+.category-tag.objects { background: #fce4ec; color: #c2185b; }
+.category-tag.concepts { background: #e8eaf6; color: #303f9f; }
+
+[data-theme="dark"] .category-tag.nouns { background: #1e3a5f; color: #90caf9; }
+[data-theme="dark"] .category-tag.verbs { background: #3e2d4d; color: #ce93d8; }
+[data-theme="dark"] .category-tag.deities { background: #1b3e2c; color: #81c784; }
+[data-theme="dark"] .category-tag.places { background: #3d2e1a; color: #ffb74d; }
+[data-theme="dark"] .category-tag.animals { background: #1b3e2c; color: #81c784; }
+[data-theme="dark"] .category-tag.objects { background: #3d1e2d; color: #f48fb1; }
+[data-theme="dark"] .category-tag.concepts { background: #2d2e5f; color: #9fa8da; }
+
+/* Egyptian Hieroglyph Stacking */
+.hieroglyph-stack {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+}
+
+.hieroglyph-stack .top-glyph {
+    position: absolute;
+    top: -0.3em;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7em;
+    z-index: 2;
+}
+
+.hieroglyph-stack .base-glyph {
+    position: relative;
+    z-index: 1;
+    font-size: 1em;
+}
+
+/* For stacked glyphs in the hieroglyph display */
+.hieroglyph-display .hieroglyph-stack {
+    font-size: 2rem;
+    margin: 0 2px;
+}
+
+.period-tag {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+}
+
+.gardiner-code {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-family: monospace;
+}
+
+.pronunciation {
+    background: var(--bg-secondary);
+    padding: 8px 12px;
+    border-radius: var(--radius);
+    margin: 1rem 0;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.word-footer {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 0.875rem;
+    flex: 1;
+}
+
+/* Page info display */
+.page-info-top {
+    background: var(--bg-secondary);
+    padding: 1rem;
+    border-radius: var(--radius);
+    margin: 1rem 0;
+    text-align: center;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+/* Filter buttons active state */
+.filter-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* Modal styles */
+.word-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.word-modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.word-modal .modal-content {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    border: 2px solid var(--primary-color);
+}
+
+.word-modal.show .modal-content {
+    transform: translateY(0);
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+    background: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.word-detail-header {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    align-items: center;
+}
+
+.word-glyph-large {
+    font-size: 4rem;
+    color: var(--primary-color);
+    font-family: 'Segoe UI Historic', 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    padding: 1rem;
+    min-width: 120px;
+    text-align: center;
+}
+
+.word-detail-info {
+    flex: 1;
+}
+
+.word-detail-info h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.word-detail-info h3 {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-weight: 400;
+}
+
+.word-detail-meta {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.word-detail-body {
+    padding: 2rem;
+}
+
+.detail-section {
+    margin-bottom: 1.5rem;
+}
+
+.detail-section h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.detail-section p {
+    margin: 0;
+    color: var(--text-primary);
+}
+
+/* No results styling */
+.no-results {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-secondary);
+    grid-column: 1 / -1;
+}
+
+.no-results i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+/* Debug button */
+#hieroglyphDebugBtn {
+    position: fixed;
+    bottom: 100px;
+    right: 8px;
+    padding: 10px 15px;
+    background: #8b4513;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    z-index: 9999;
+    font-family: 'Noto Sans Egyptian Hieroglyphs', Arial, sans-serif;
+    font-size: 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+/* Pagination styles */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    padding: 1rem;
+}
+
+.page-link {
+    padding: 8px 12px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.page-link:hover {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.page-link.current {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    font-weight: bold;
+}
+
+.page-link.prev, .page-link.next {
+    padding: 8px 15px;
+}
+    </style>
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>𓋹</text></svg>">
+</head>
+<body>
+    <!-- =============== EGYPTIAN NAVIGATION TEMPLATE =============== -->
+
+<nav class="navbar" aria-label="Main navigation">
+    <div class="container nav-container">
+        <!-- Egyptian-first logo layout -->
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <a href="index.html" class="logo" aria-label="Ancient Lexicon Egyptian Home">
+                <span class="logo-icon" aria-hidden="true">𓋹</span>
+                <span class="logo-text">ꜤANAḪ𓊹𓊹</span>
+            </a>
+            <a href="anakh11_sumerian.html" class="logo" aria-label="Ancient Lexicon Sumerian Home">
+                <span class="logo-icon" aria-hidden="true">𒆠</span>
+                <span class="logo-text">𒀭𒊺𒉀</span>
+            </a>
+        </div>
+        
+        <div class="nav-links">
+            <!-- Dictionaries Dropdown -->
+            <div class="nav-dropdown">
+                <button class="nav-link" aria-expanded="false" aria-controls="dictionaries-dropdown">
+                    <i class="fas fa-book" aria-hidden="true"></i> Dictionaries
+                </button>
+                <div class="dropdown-content" id="dictionaries-dropdown">
+                    <a href="anakh11.html" class="active"><i class="fas fa-eye" aria-hidden="true"></i> Egyptian</a>
+                    <a href="anakh11_sumerian.html"><i class="fas fa-tablet" aria-hidden="true"></i> Sumerian</a>
+                    <a href="hieroglyphs.html"><i class="fas fa-feather-alt" aria-hidden="true"></i> Hieroglyphs</a>
+                    <a href="cuneiform.html"><i class="fas fa-monument" aria-hidden="true"></i> Cuneiform</a>
+                </div>
+            </div>
+            
+            <!-- Standard Links -->
+            <a href="grammar.html" class="nav-link">
+                <i class="fas fa-language" aria-hidden="true"></i> Grammar
+            </a>
+            <a href="timeline.html" class="nav-link">
+                <i class="fas fa-hourglass-half" aria-hidden="true"></i> Timeline
+            </a>
+            <a href="artifacts.html" class="nav-link">
+                <i class="fas fa-museum" aria-hidden="true"></i> Artifacts
+            </a>
+            
+            <!-- Theme Toggle -->
+            <button class="btn btn-outline" id="themeToggle" aria-label="Toggle dark/light mode">
+                <i class="fas fa-moon" aria-hidden="true"></i>
+            </button>
+            
+            <!-- Search -->
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search Egyptian words..." 
+                       aria-label="Search Egyptian words">
+                <button id="searchBtn" aria-label="Search">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Button -->
+        <button class="mobile-menu-btn" aria-label="Open mobile menu" aria-expanded="false">
+            <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+    </div>
+</nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="header-content">
+                <span class="badge">𓂀 Middle Egyptian Dictionary</span>
+                <h1>Egyptian Hieroglyphic Lexicon</h1>
+                <p class="header-subtitle">
+                    3,217 words from Old Kingdom to Ptolemaic period with Gardiner classifications, 
+                    transliterations, and English translations
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPROVED: Dictionary Tools with working filters -->
+    <section class="dictionary-tools">
+        <div class="container">
+            <div class="tools-grid">
+                <!-- Filter section -->
+                <div class="tool-card">
+                    <h3><i class="fas fa-filter"></i> Filter by Category</h3>
+                    <div class="category-filters">
+                        <button class="filter-btn active" data-category="all">All Words</button>
+                        <button class="filter-btn" data-category="nouns">Nouns</button>
+                        <button class="filter-btn" data-category="verbs">Verbs</button>
+                        <button class="filter-btn" data-category="deities">Deities</button>
+                        <button class="filter-btn" data-category="places">Places</button>
+                        <button class="filter-btn" data-category="animals">Animals</button>
+                        <button class="filter-btn" data-category="objects">Objects</button>
+                        <button class="filter-btn" data-category="concepts">Concepts</button>
+                    </div>
+                </div>
+                
+                <!-- Sort section -->
+                <div class="tool-card">
+                    <h3><i class="fas fa-sort-alpha-down"></i> Sort Options</h3>
+                    <div class="sort-options">
+                        <select id="sortSelect">
+                            <option value="hieroglyph">By Hieroglyph</option>
+                            <option value="transliteration">By Transliteration (A-Z)</option>
+                            <option value="translation">By Meaning (A-Z)</option>
+                            <option value="gardiner">By Gardiner Sign</option>
+                        </select>
+                        <select id="periodSelect">
+                            <option value="all">All Periods</option>
+                            <option value="old">Old Kingdom</option>
+                            <option value="middle">Middle Kingdom</option>
+                            <option value="new">New Kingdom</option>
+                            <option value="late">Late Period</option>
+                            <option value="ptolemaic">Ptolemaic</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Export Button -->
+            <div class="export-section">
+                <button class="btn btn-outline" id="exportBtn">
+                    <i class="fas fa-download"></i> Export Current View
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPROVED: Words container with proper grid layout -->
+    <section class="words-section">
+        <div class="container">
+            <div id="pageInfo" class="page-info-top">
+                Loading Egyptian words...
+            </div>
+            <div id="wordsContainer" class="words-grid">
+                <!-- Words will be loaded here dynamically -->
+            </div>
+            
+            <!-- Pagination -->
+            <div id="pagination" class="pagination">
+                <!-- Pagination will be rendered here dynamically -->
+            </div>
+        </div>
+    </section>
+
+   <!-- =============== UPDATED FOOTER =============== -->
+<!-- Replace the entire <footer class="footer"> section in anakh11.html with this: -->
+
+<footer class="footer" role="contentinfo">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <a href="index.html" class="logo" style="margin: 0;">
+                        <span class="logo-icon">𓋹</span>
+                        <span class="logo-text">ꜤANAḪ𓊹𓊹</span>
+                    </a>
+                    <a href="anakh11_sumerian.html" class="logo" style="margin: 0;">
+                        <span class="logo-icon">𒆠</span>
+                        <span class="logo-text">𒀭𒊺𒉀</span>
+                    </a>
+                </div>
+                <p class="footer-tagline">
+                    Preserving the languages of ancient civilisations through digital scholarship.
+                </p>
+                <div class="footer-social">
+                    <a href="#" class="social-link" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+                    <a href="#" class="social-link" aria-label="ResearchGate"><i class="fab fa-researchgate" aria-hidden="true"></i></a>
+                    <a href="#" class="social-link" aria-label="University"><i class="fas fa-university" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Egyptian Resources</h4>
+                    <a href="hieroglyphs.html">Hieroglyph Guide</a>
+                    <a href="grammar.html">Grammar Rules</a>
+                    <a href="timeline.html">Historical Timeline</a>
+                    <a href="resources.html">Bibliography</a>
+                </div>
+
+                <div class="footer-column">
+                    <h4># Numbers</h4>
+                    <a href="numbers_1.html">1-100</a>
+                    <a href="numbers_2.html">100-1,000</a>
+                    <a href="numbers_3.html">1,000-10,000</a>
+                    <a href="numbers_4.html">10000-100,000</a>
+                    <a href="numbers_5.html">100,000-1,000,000</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Dictionary Pages</h4>
+                    <a href="egyptian_1.html">Ꜣ Words</a>
+                    <a href="egyptian_2.html">Ꜥ Words</a>
+                    <a href="egyptian_3.html">B Words</a>
+                    <a href="egyptian_4.html">K Words</a>
+                    <a href="egyptian_5.html">Ỉ Words</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <a href="contact_1.html">Contribute</a>
+                    <a href="contact_2.html">Report Errors</a>
+                    <a href="contact_3.html">Contact Scholars</a>
+                    <a href="contact_4.html">Feedback</a>
+                    <a href="contact_5.html">Updates</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; <span id="current-year">2026</span> Ancient Lexicon Project. All rights reserved.</p>
+            <p class="tech-stack">
+                Based on: Gardiner's Sign List • Faulkner's Dictionary • Wörterbuch der ägyptischen Sprache • Thesaurus Linguæ Ægyptiæ
+            </p>
+        </div>
+    </div>
+</footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- =============== IMPROVED EGYPTIAN DICTIONARY SCRIPT =============== -->
+
+<script>
+    // =============== GLOBAL VARIABLES ===============
+    let currentPage = 1;
+    const itemsPerPage = 8;
+    let filteredWords = [];
+    let currentCategory = 'all';
+    let currentPeriod = 'all';
+    let currentSort = 'hieroglyph';
+
+    // =============== EGYPTIAN DICTIONARY DATA ===============
+    const egyptianWords = [
+        {
+            id: 1,
+            hieroglyph: "𓄿/𓄿𓏺",
+            transliteration: "Ꜣ",
+            translation: "Egyptian vulture (Neophron Percnopterus), (negative) particle, enclitic particle with exclamatory force",
+            category: "nouns",
+            period: "all",
+            gardiner: "G1",
+            pronunciation: "/(reconstructed) IPA(key): /ʀaː/ → /ʀ/ → /aː/",
+            descendants: "Phoenician: '𐤀',Hebrew: 'א', Samaritan: 'ࠀ'Aramaic: '𐡀', Syriac: 'ܐ', Nabataean: '𐢁𐢀', Arabic: 'ا', South Arabian: '𐩱', Geʽez: 'አ', North Arabian: '𐪑', Ugaritic: '𐎀'",
+            examples: "𓄿𓂝𓅱𓈖𓋴𓏇𓇋 (ꜣꜥw-n-smj) - étui with toilette utensils",
+            explanation: "Possibly from Proto-Afroasiatic *ʔay- (\"bird of prey\").[1] Compare also Proto-Semitic *ʔayy- (\"bird of prey\")",
+        },
+        {
+            id: 2,
+            hieroglyph: "𓅡𓏺/𓅽",
+            transliteration: "BꜢ",
+            translation: "soul, spirit",
+            category: "concepts",
+            period: "all",
+            gardiner: "G29/G53",
+            pronunciation: "/(reconstructed) IPA(key): /biʀ/²⁵⁰⁰ᵇᶜᵉ → /biʀ/¹⁷⁰⁰ᵇᶜᵉ → /bej/¹³⁵⁰ᵇᶜᵉ → /βej/⁸⁰⁰ᵇᶜᵉ",
+            descendants: "Old Coptic: ⲃⲁⲓ (bai)",
+            examples: "𓅽𓐝𓏏𓇯 (bꜣ m p.t) - soul in heaven"
+        },
+        {
+            id: 3,
+            hieroglyph: "𓅃",
+            transliteration: "Ḥr",
+            translation: "Horus (god of war, the sky, kingship, and protection)",
+            category: "deities",
+            period: "all",
+            gardiner: "G5",
+            pronunciation: "/(reconstructed) IPA(key): /ˈħaːɾuw/²⁵⁰⁰ᵇᶜᵉ → /ˈħaːɾuw/¹⁷⁰⁰ᵇᶜᵉ → /ˈħaːɾə/¹³⁵⁰ᵇᶜᵉ compare the Akkadian transcription in Middle Babylonian 𒄩𒀀𒊏 (ḫa-a-ra) → /ˈħoːɾ/⁸⁰⁰ᵇᶜᵉ compare the Akkadian transcription in Neo-Assyrian 𒄷𒊒 (/⁠-ḫuru-⁠/)",
+            descendants: "Descendants Coptic: ϩⲱⲣ (hōr), (in compounds) ϩⲁⲣ- (har-)→ Ancient Greek: Ὧρος (Hôros), (in compounds) Ἁр- (Har-)→ Meroitic: 𐦠𐦫 (ar /⁠ara⁠/)",
+            examples: "𓅃𓀭 (ḥr.w) - Horus"
+        },
+        {
+            id: 4,
+            hieroglyph: "𓋹<span class='hieroglyph-stack'><span class='top-glyph'>𓈖</span><span class='base-glyph'>𓐍</span></span>",
+            transliteration: "ꜤnḪ",
+            translation: "to live, life",
+            category: "concepts",
+            period: "all",
+            gardiner: "S34-N35-Aa1",
+            pronunciation: "(verb): (reconstructed) IPA(key): /ˈʕaːnaχ/²⁵⁰⁰ᵇᶜᵉ → /ˈʕaːnaχ/¹⁷⁰⁰ᵇᶜᵉ → /ˈʕaːnəχ/¹³⁵⁰ᵇᶜᵉ → /ˈʕoːnəχ/⁸⁰⁰ᵇᶜᵉ",
+            descendants: "Demotic Egyptian: ꜥnḫ Akhmimic Coptic: ⲱⲛⳉ (ōnx) Bohairic Coptic: ⲱⲛϧ (ōnx) Fayyumic Coptic: ⲱⲛϩ (ōnh) Lycopolitan Coptic: ⲱⲛϩ (ōnh) Coptic Dialect P: ⲱⲳϧ (ōnx) Sahidic Coptic: ⲱⲛϩ (ōnh)",
+            examples: "𓋹<span class='hieroglyph-stack'><span class='top-glyph'>𓈖</span><span class='base-glyph'>𓐍</span></span> (ꜥnḫ) - oath, may ... live, 𓋹𓆰𓏥 (ꜥnḫ) - bouquet, 𓋹𓈖𓐍𓏏𓈖𓊖𓏏𓏤 ꜥnḫ.t-n.t-nʾ.t - citizen",
+            explanation: "Disputed. Traditionally it was interpreted as a sandal strap, but this explanation is now increasingly rejected. Fischer describes it as originally representing an elaborate amuletic bow, noting that the lower part represents the two ends of the cord next to each other; the form of the glyph in the Archaic Period generally showed these two ends widely separated instead of together as in the later ankh. Westendorf hypothesises that it originally represented a sort of belt similar to the knot of Isis.",
+        },
+        {
+            id: 5,
+            hieroglyph: "𓌶𓂝𓁦/𓌷𓂝𓁧",
+            transliteration: "mꜢꜤ.t",
+            translation: "Ma'at (goddess of truth, justice and righteousness)",
+            category: "deities",
+            period: "all",
+            gardiner: "U4-D36-C10/U5-D36-C10A",
+            pronunciation: "(reconstructed) IPA(key): /ˈmuʀʕat/²⁵⁰⁰ᵇᶜᵉ → /ˈmuʀʕaʔ/¹⁷⁰⁰ᵇᶜᵉ → /ˈmuːʕa¹³⁵⁰ᵇᶜᵉ compare the Akkadian transcription in Middle Babylonian 𒈬𒀀 (mu-a)/ → /ˈmeːʕə/⁸⁰⁰ᵇᶜᵉ",
+            descendants: "Descendants Demotic Egyptian: mꜣꜥt, Akhmimic Coptic: ⲙⲏⲉ (mēe), ⲙⲓⲉ (mie)Bohairic Coptic: ⲙⲏⲓ (mēi), ⲙⲉⲓ (mei)Fayyumic Coptic: ⲙⲉⲓ (mei), ⲙⲉⲉⲓ (meei), ⲙⲏⲓ (mēi)Lycopolitan Coptic: ⲙⲏⲉ (mēe)Old Coptic: ⲙⲉ (me)Sahidic Coptic: ⲙⲉ (me), ⲙⲉⲉ (mee), ⲙⲏⲉ (mēe)",
+            examples: "𓂋𓏠𓈖𓂢𓌶𓂝𓏏𓁦 (rmn.mꜣꜥ.t) - He-who-supports-Ma'at"
+        },
+        {
+            id: 6,
+            hieroglyph: "𓄟𓋴",
+            transliteration: "ms",
+            translation: "to give birth",
+            category: "verbs",
+            period: "all",
+            gardiner: "F31-S29",
+            pronunciation: "/'mis/²⁵⁰⁰ᵇᶜᵉ → /mis/¹⁷⁰⁰ᵇᶜᵉ → /mes/¹³⁵⁰ᵇᶜᵉ → /mes/⁸⁰⁰ᵇᶜᵉ → /mɛs/³⁰⁰ᵇᶜᵉ⁻",
+            examples: "𓄟𓋴𓁒/𓄟𓋴𓁓 (mi.sa) - to birth, to bear"
+        },
+        {
+            id: 7,
+            hieroglyph: "𓇋𓏏𓆑",
+            transliteration: "jt.f",
+            translation: "father, ancestor",
+            category: "nouns",
+            period: "all",
+            gardiner: "M17-X1-I9",
+            pronunciation: "(reconstructed) IPA(key): /ˈjaːtij/ (singular), /ˈjatjaw/ (plural)²⁵⁰⁰ᵇᶜᵉ/ˈjaːtij/ (singular), /ˈjatjaw/ (plural)¹⁷⁰⁰ᵇᶜᵉ/ˈjaːtə/ (singular), /ˈjatjə/ (plural)¹³⁵⁰ᵇᶜᵉ/joːt/ (singular), /ˈjati/ (plural)⁸⁰⁰ᵇᶜᵉ",
+            examples: "𓇋𓏏𓆑 (jt) - father"
+        },
+        {
+            id: 8,
+            hieroglyph: "𓅑𓏏/𓅐𓏏𓆇𓆗",
+            transliteration: "mw.t",
+            translation: "Miwat, Mut (goddess of motherhood)",
+            category: "deities",
+            period: "all",
+            gardiner: "G15-X1-H8-I12",
+            pronunciation: "(reconstructed) IPA(key): /ˈmiʔwat/²⁵⁰⁰ᵇᶜᵉ → /ˈmiʔwaʔ/¹⁷⁰⁰ᵇᶜᵉ → /ˈmeʔwə/¹³⁵⁰ᵇᶜᵉ → /ˈmeʔw/⁸⁰⁰ᵇᶜᵉ",
+            examples: "𓅐𓏏𓁐 (mwt) - Mut"
+        },
+        {
+            id: 9,
+            hieroglyph: "𓅐𓏏𓁐",
+            transliteration: "mw.t",
+            translation: "mother",
+            category: "nouns",
+            period: "all",
+            gardiner: "G14-X1-B1",
+            pronunciation: "(reconstructed) IPA(key): /ˈmiʔwat/²⁵⁰⁰ᵇᶜᵉ → /ˈmiʔwaʔ/¹⁷⁰⁰ᵇᶜᵉ → /ˈmeʔwə/¹³⁵⁰ᵇᶜᵉ → /ˈmeʔw/⁸⁰⁰ᵇᶜᵉ",
+            examples: "𓅐𓏏𓁐/𓂸𓏏𓁐/𓄱𓏏 (mw.t) - mother"
+        },
+        {
+            id: 10,
+            hieroglyph: "𓂝𓈙𓀁",
+            transliteration: "Ꜥš",
+            translation: "to call, to summon",
+            category: "verbs",
+            period: "all",
+            gardiner: "D36-N37-A2",
+            pronunciation: "/ʕaːʃ/²⁵⁰⁰ᵇᶜᵉ → /ʕaːʃ/¹⁷⁰⁰ᵇᶜᵉ → /ʕaːʃ/¹³⁵⁰ᵇᶜᵉ /ʕoːʃ/⁸⁰⁰ᵇᶜᵉ",
+            examples: "𓂝𓈙𓀁 (ꜥš) - call, summons, announcement"
+        },
+        {
+            id: 11,
+            hieroglyph: "𓊹𓏤",
+            transliteration: "nṮr",
+            translation: "god, deity",
+            category: "deities",
+            period: "all",
+            gardiner: "R8",
+            pronunciation: "//ˈnaːcaɾ/²⁵⁰⁰ᵇᶜᵉ → /ˈnaːtaʔ/¹⁷⁰⁰ᵇᶜᵉ → /ˈnaːta/¹³⁵⁰ᵇᶜᵉ → /ˈnoːtə/⁸⁰⁰ᵇᶜᵉ",
+            examples: "𓌃𓌃𓌃𓀁𓈖𓍿𓂋𓊹𓊹𓊹 (mṭ.w nṯr.w) -hieroglyphs (literally) words of the gods"
+        },
+        {
+            id: 12,
+            hieroglyph: "𓅱𓍑𓄿𓂀",
+            transliteration: "wḎꜢ",
+            translation: "Eye of Horus",
+            category: "symbols",
+            period: "all",
+            gardiner: "G43-U28-G1-D10",
+            pronunciation: "/(reconstructed) IPA(key): /waˈc'aʀt²⁵⁰⁰ᵇᶜᵉ/ → /waˈt͡ʃʼaʀt¹⁷⁰⁰ᵇᶜᵉ/ → /wəˈt͡ʃʼej(t)¹³⁵⁰ᵇᶜᵉ/ → /wəˈt͡ʃʼej(t⁸⁰⁰ᵇᶜᵉ)/",
+            examples: "𓂀 (wḏꜣ) - Eye of Horus amulet"
+        },
+        {
+            id: 13,
+            hieroglyph: "𓅱𓍑𓄿𓇩",
+            transliteration: "wḎꜢ",
+            translation: "well-being, soundness",
+            category: "nouns",
+            period: "all",
+            gardiner: "G43-U28-G1-M40",
+            pronunciation: "/(reconstructed) IPA(key): /waˈc'aʀ²⁵⁰⁰ᵇᶜᵉ/ → /waˈt͡ʃʼaʀ¹⁷⁰⁰ᵇᶜᵉ/ → /wəˈt͡ʃʼej¹³⁵⁰ᵇᶜᵉ/ → /wəˈt͡ʃʼej⁸⁰⁰ᵇᶜᵉ/",
+            examples: "'𓋹𓍑𓋴' (Ꜥnḫ wḏꜣ snb) an honorific phrase used after the names of kings, queens, princes, etc. meaning (may s/he) be alive, sound and healthy"
+        }
+    ];
+
+    // =============== CUSTOMIZABLE HIEROGLYPH DATABASE ===============
+
+// YOUR master glyph database - YOU control all the data!
+const customGlyphDB = {
+    // Birds
+    "𓄿": { 
+        gardiner: "G1",
+        name: "Egyptian vulture",
+        category: "bird",
+        pronunciation: "ꜣ (aleph)",
+        description: "Egyptian vulture (Neophron percnopterus), used for the sound ꜣ"
+    },
+    "𓅱": { 
+        gardiner: "G43",
+        name: "quail chick",
+        category: "bird", 
+        pronunciation: "w",
+        description: "Quail chick, used for the sound w"
+    },
+    
+    // Deities and Concepts
+    "𓅽": { 
+        gardiner: "G53",
+        name: "ba bird",
+        category: "soul",
+        pronunciation: "bꜣ",
+        description: "Ba (soul) - human-headed bird representing the personality/soul"
+    },
+    "𓅃": { 
+        gardiner: "G5", 
+        name: "Horus falcon",
+        category: "deity",
+        pronunciation: "ḥr",
+        description: "Falcon representing Horus, god of kingship and the sky"
+    },
+    
+    // Symbols
+    "𓋹": { 
+        gardiner: "S34",
+        name: "ankh",
+        category: "symbol",
+        pronunciation: "ꜥnḫ",
+        description: "Ankh - symbol of life"
+    },
+    
+    // Tools/Objects
+    "𓌶": { 
+        gardiner: "U4",
+        name: "sickle on plinth",
+        category: "tool",
+        pronunciation: "mꜣꜥ",
+        description: "Sickle on plinth, associated with truth/justice (maat)"
+    },
+    
+    // More common glyphs (expand as needed)
+    "𓈖": { 
+        gardiner: "N35",
+        name: "water ripple",
+        category: "water",
+        pronunciation: "n",
+        description: "Water ripple, used for the sound n"
+    },
+    "𓐍": { 
+        gardiner: "Aa1",
+        name: "placenta?",
+        category: "organ",
+        pronunciation: "ḫ",
+        description: "Uncertain - possibly placenta, used for the sound ḫ"
+    },
+    "𓀀": { 
+        gardiner: "A1",
+        name: "seated man",
+        category: "man",
+        pronunciation: "",
+        description: "Seated man - determinative for man, occupations"
+    },
+    "𓊹": { 
+        gardiner: "R8",
+        name: "god flagpole",
+        category: "deity",
+        pronunciation: "nṯr",
+        description: "Flag on pole, determinative for god/deity"
+    },
+    "𓂀": { 
+        gardiner: "D10",
+        name: "Eye of Horus",
+        category: "symbol",
+        pronunciation: "wḏꜣ.t",
+        description: "Eye of Horus (wedjat) - protective symbol"
+    }
+};
+
+// =============== USER-FRIENDLY MANAGEMENT SYSTEM ===============
+
+class GlyphManager {
+    constructor() {
+        this.database = { ...customGlyphDB };
+        this.initialize();
+    }
+    
+    initialize() {
+        // Load any saved customizations
+        this.loadFromStorage();
+    }
+    
+    // Add or update a glyph
+    updateGlyph(glyph, data) {
+        this.database[glyph] = {
+            ...(this.database[glyph] || {}), // Keep existing data if any
+            ...data,                         // Add/overwrite with new data
+            lastUpdated: new Date().toISOString()
+        };
+        this.saveToStorage();
+        return this.database[glyph];
+    }
+    
+    // Remove a glyph
+    removeGlyph(glyph) {
+        if (this.database[glyph]) {
+            delete this.database[glyph];
+            this.saveToStorage();
+            return true;
+        }
+        return false;
+    }
+    
+    // Get glyph info
+    getGlyph(glyph) {
+        return this.database[glyph] || {
+            gardiner: "Unknown",
+            name: "Unknown glyph",
+            category: "unclassified",
+            pronunciation: "",
+            description: "This glyph is not yet in the database"
+        };
+    }
+    
+    // Get all glyphs
+    getAllGlyphs() {
+        return Object.entries(this.database).map(([glyph, data]) => ({
+            glyph,
+            ...data
+        }));
+    }
+    
+    // Get glyphs by category
+    getByCategory(category) {
+        return Object.entries(this.database)
+            .filter(([_, data]) => data.category === category)
+            .map(([glyph, data]) => ({ glyph, ...data }));
+    }
+    
+    // Save to browser storage
+    saveToStorage() {
+        try {
+            localStorage.setItem('customGlyphDB', JSON.stringify(this.database));
+            console.log('Glyph database saved to localStorage');
+        } catch (e) {
+            console.error('Failed to save to localStorage:', e);
+        }
+    }
+    
+    // Load from browser storage
+    loadFromStorage() {
+        try {
+            const saved = localStorage.getItem('customGlyphDB');
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                this.database = { ...customGlyphDB, ...parsed }; // Merge with defaults
+                console.log('Custom glyph data loaded from localStorage');
+            }
+        } catch (e) {
+            console.error('Failed to load from localStorage:', e);
+        }
+    }
+    
+    // Export database
+    exportDatabase() {
+        const data = {
+            glyphs: this.database,
+            exportDate: new Date().toISOString(),
+            count: Object.keys(this.database).length
+        };
+        
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `glyph-database-${new Date().toISOString().split('T')[0]}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+    
+    // Import database
+    importDatabase(jsonData) {
+        try {
+            const data = JSON.parse(jsonData);
+            if (data.glyphs) {
+                this.database = { ...this.database, ...data.glyphs };
+                this.saveToStorage();
+                return true;
+            }
+        } catch (e) {
+            console.error('Failed to import database:', e);
+        }
+        return false;
+    }
+}
+
+// =============== ENHANCED DEBUG TOOL WITH EDITING ===============
+
+function createEnhancedGlyphDebugger() {
+    console.log("Creating enhanced glyph debugger...");
+    
+    // Create main panel
+    const panelHTML = `
+        <div id="glyphDebugPanel" style="
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 450px;
+            max-height: 80vh;
+            background: white;
+            border: 3px solid #8b4513;
+            border-radius: 10px;
+            padding: 20px;
+            z-index: 10001;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            display: none;
+            font-family: Arial, sans-serif;
+            overflow-y: auto;
+        ">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h3 style="margin: 0; color: #8b4513; display: flex; align-items: center; gap: 10px;">
+                    <span>𓏞</span>
+                    <span>Glyph Inspector & Editor</span>
+                </h3>
+                <button onclick="closeGlyphDebugger()" style="
+                    background: none;
+                    border: none;
+                    font-size: 24px;
+                    cursor: pointer;
+                    color: #666;
+                    padding: 0;
+                    width: 30px;
+                    height: 30px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                ">×</button>
+            </div>
+            
+            <!-- Glyph Input Section -->
+            <div style="margin-bottom: 20px; padding: 15px; background: #f8f4f0; border-radius: 6px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #5d4037;">Test or Add Glyph:</label>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="debugGlyphInput" value="𓀀" style="
+                        flex: 1;
+                        padding: 10px;
+                        font-size: 28px;
+                        font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+                        text-align: center;
+                        border: 2px solid #d7ccc8;
+                        border-radius: 4px;
+                    ">
+                    <button onclick="testCurrentGlyph()" style="
+                        padding: 10px 20px;
+                        background: #8b4513;
+                        color: white;
+                        border: none;
+                        border-radius: 4px;
+                        cursor: pointer;
+                        font-weight: bold;
+                    ">Test</button>
+                </div>
+                
+                <!-- Quick Glyph Buttons -->
+                <div style="margin-top: 15px;">
+                    <p style="margin: 0 0 8px 0; font-size: 12px; color: #666;">Quick test glyphs:</p>
+                    <div id="glyphQuickTest" style="
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 5px;
+                    "></div>
+                </div>
+            </div>
+            
+            <!-- Glyph Information Display -->
+            <div id="glyphInfoDisplay" style="
+                margin-bottom: 20px;
+                padding: 15px;
+                background: #fff;
+                border-radius: 6px;
+                border: 2px solid #e0d6cc;
+            ">
+                <div style="text-align: center; font-size: 56px; margin-bottom: 20px; min-height: 70px;" id="glyphDisplay">𓀀</div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 14px;">
+                    <div><strong>Gardiner:</strong> <span id="infoGardiner">A1</span></div>
+                    <div><strong>Category:</strong> <span id="infoCategory">man</span></div>
+                    <div><strong>Name:</strong> <span id="infoName">seated man</span></div>
+                    <div><strong>Pronunciation:</strong> <span id="infoPronunciation"></span></div>
+                </div>
+                
+                <div style="margin-top: 10px;">
+                    <strong>Description:</strong>
+                    <div id="infoDescription" style="margin-top: 5px; color: #555; line-height: 1.4;">Seated man - determinative for man, occupations</div>
+                </div>
+                
+                <div style="margin-top: 10px; font-size: 12px; color: #888;">
+                    <strong>Unicode:</strong> <span id="infoUnicode">U+13000</span>
+                </div>
+            </div>
+            
+            <!-- Edit Section (Only for known glyphs) -->
+            <div id="editSection" style="display: none;">
+                <h4 style="margin: 0 0 10px 0; color: #8b4513;">Edit Glyph Information</h4>
+                <div style="display: grid; gap: 10px;">
+                    <input type="text" id="editGardiner" placeholder="Gardiner Code (e.g., A1)" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                    <input type="text" id="editName" placeholder="Glyph Name" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                    <input type="text" id="editCategory" placeholder="Category" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                    <input type="text" id="editPronunciation" placeholder="Pronunciation" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                    <textarea id="editDescription" placeholder="Description" rows="3" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px; resize: vertical;"></textarea>
+                    
+                    <div style="display: flex; gap: 10px;">
+                        <button onclick="saveGlyphEdits()" style="
+                            flex: 1;
+                            padding: 10px;
+                            background: #2e7d32;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            cursor: pointer;
+                        ">Save Changes</button>
+                        <button onclick="cancelGlyphEdits()" style="
+                            flex: 1;
+                            padding: 10px;
+                            background: #757575;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            cursor: pointer;
+                        ">Cancel</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Database Management -->
+            <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee;">
+                <h4 style="margin: 0 0 10px 0; color: #8b4513;">Database Management</h4>
+                <div style="display: flex; gap: 10px;">
+                    <button onclick="exportGlyphDatabase()" style="
+                        flex: 1;
+                        padding: 8px;
+                        background: #1565c0;
+                        color: white;
+                        border: none;
+                        border-radius: 4px;
+                        cursor: pointer;
+                        font-size: 12px;
+                    ">Export Database</button>
+                    <button onclick="toggleEditMode()" id="editModeBtn" style="
+                        flex: 1;
+                        padding: 8px;
+                        background: #8b4513;
+                        color: white;
+                        border: none;
+                        border-radius: 4px;
+                        cursor: pointer;
+                        font-size: 12px;
+                    ">Edit Mode</button>
+                </div>
+                <div style="margin-top: 10px; font-size: 12px; color: #666;">
+                    <div>Glyphs in database: <span id="dbCount">${Object.keys(customGlyphDB).length}</span></div>
+                    <div id="dbStatus" style="margin-top: 5px;"></div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // Add to page
+    document.body.insertAdjacentHTML('beforeend', panelHTML);
+    
+    // Add quick test buttons
+    const glyphsToShow = Object.keys(customGlyphDB).slice(0, 10);
+    const quickTestDiv = document.getElementById('glyphQuickTest');
+    
+    glyphsToShow.forEach(glyph => {
+        const btn = document.createElement('button');
+        btn.textContent = glyph;
+        btn.title = customGlyphDB[glyph]?.name || glyph;
+        btn.style.cssText = `
+            font-size: 20px;
+            padding: 6px 12px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Noto Sans Egyptian Hieroglyphs';
+            transition: all 0.2s;
+        `;
+        btn.onmouseover = () => {
+            btn.style.background = '#e8e8e8';
+            btn.style.borderColor = '#8b4513';
+        };
+        btn.onmouseout = () => {
+            btn.style.background = '#f5f5f5';
+            btn.style.borderColor = '#ddd';
+        };
+        btn.onclick = () => {
+            document.getElementById('debugGlyphInput').value = glyph;
+            testCurrentGlyph();
+        };
+        quickTestDiv.appendChild(btn);
+    });
+    
+    console.log("Enhanced debugger created!");
+}
+
+// Initialize the manager
+let glyphManager;
+
+// Initialize everything
+function initEnhancedGlyphSystem() {
+    console.log("Initializing enhanced glyph system...");
+    
+    // Initialize manager
+    glyphManager = new GlyphManager();
+    
+    // Create debugger
+    createEnhancedGlyphDebugger();
+    
+    // Update count display
+    updateDatabaseCount();
+    
+    console.log("Enhanced glyph system ready!");
+}
+
+// Update database count display
+function updateDatabaseCount() {
+    const countElement = document.getElementById('dbCount');
+    if (countElement && glyphManager) {
+        countElement.textContent = Object.keys(glyphManager.database).length;
+    }
+}
+
+// Update status message
+function updateStatus(message, isError = false) {
+    const statusElement = document.getElementById('dbStatus');
+    if (statusElement) {
+        statusElement.textContent = message;
+        statusElement.style.color = isError ? '#c62828' : '#2e7d32';
+        
+        // Clear message after 3 seconds
+        setTimeout(() => {
+            if (statusElement.textContent === message) {
+                statusElement.textContent = '';
+            }
+        }, 3000);
+    }
+}
+
+// Global functions for the debugger
+window.testCurrentGlyph = function() {
+    const input = document.getElementById('debugGlyphInput');
+    const glyph = input.value.trim();
+    
+    if (!glyph) {
+        alert("Please enter a hieroglyph!");
+        return;
+    }
+    
+    // Get glyph info from manager
+    const info = glyphManager.getGlyph(glyph);
+    
+    // Update display
+    document.getElementById('glyphDisplay').textContent = glyph;
+    document.getElementById('infoGardiner').textContent = info.gardiner;
+    document.getElementById('infoName').textContent = info.name;
+    document.getElementById('infoCategory').textContent = info.category;
+    document.getElementById('infoPronunciation').textContent = info.pronunciation;
+    document.getElementById('infoDescription').textContent = info.description;
+    
+    // Add Unicode info
+    const unicode = "U+" + glyph.codePointAt(0).toString(16).toUpperCase();
+    document.getElementById('infoUnicode').textContent = unicode;
+    
+    // Show/hide edit section based on whether this is a known glyph
+    const isKnown = glyph in glyphManager.database;
+    const editSection = document.getElementById('editSection');
+    if (editSection) {
+        if (isKnown) {
+            // Populate edit fields
+            document.getElementById('editGardiner').value = info.gardiner;
+            document.getElementById('editName').value = info.name;
+            document.getElementById('editCategory').value = info.category;
+            document.getElementById('editPronunciation').value = info.pronunciation;
+            document.getElementById('editDescription').value = info.description;
+        } else {
+            // Clear edit fields for new glyph
+            document.getElementById('editGardiner').value = '';
+            document.getElementById('editName').value = '';
+            document.getElementById('editCategory').value = '';
+            document.getElementById('editPronunciation').value = '';
+            document.getElementById('editDescription').value = '';
+        }
+    }
+};
+
+window.saveGlyphEdits = function() {
+    const glyph = document.getElementById('debugGlyphInput').value.trim();
+    
+    if (!glyph) {
+        alert("No glyph to save!");
+        return;
+    }
+    
+    const updates = {
+        gardiner: document.getElementById('editGardiner').value.trim(),
+        name: document.getElementById('editName').value.trim(),
+        category: document.getElementById('editCategory').value.trim(),
+        pronunciation: document.getElementById('editPronunciation').value.trim(),
+        description: document.getElementById('editDescription').value.trim()
+    };
+    
+    // Validate
+    if (!updates.name) {
+        alert("Please enter at least a name for the glyph");
+        return;
+    }
+    
+    // Save updates
+    glyphManager.updateGlyph(glyph, updates);
+    
+    // Refresh display
+    testCurrentGlyph();
+    
+    // Update count
+    updateDatabaseCount();
+    
+    // Show success message
+    updateStatus(`Saved: ${glyph} - ${updates.name}`);
+    
+    // Hide edit section
+    cancelGlyphEdits();
+};
+
+window.cancelGlyphEdits = function() {
+    document.getElementById('editSection').style.display = 'none';
+    document.getElementById('editModeBtn').textContent = 'Edit Mode';
+};
+
+window.toggleEditMode = function() {
+    const editSection = document.getElementById('editSection');
+    const editBtn = document.getElementById('editModeBtn');
+    
+    if (editSection.style.display === 'none' || !editSection.style.display) {
+        editSection.style.display = 'block';
+        editBtn.textContent = 'Hide Editor';
+        editBtn.style.background = '#5d4037';
+    } else {
+        editSection.style.display = 'none';
+        editBtn.textContent = 'Edit Mode';
+        editBtn.style.background = '#8b4513';
+    }
+};
+
+window.exportGlyphDatabase = function() {
+    glyphManager.exportDatabase();
+    updateStatus("Database exported successfully!");
+};
+
+window.openGlyphDebugger = function() {
+    const panel = document.getElementById('glyphDebugPanel');
+    if (panel) {
+        panel.style.display = 'block';
+        
+        // Test the current glyph
+        testCurrentGlyph();
+    }
+};
+
+window.closeGlyphDebugger = function() {
+    const panel = document.getElementById('glyphDebugPanel');
+    if (panel) {
+        panel.style.display = 'none';
+    }
+};
+
+    // =============== HELPER FUNCTIONS ===============
+
+function formatTransliteration(transliteration) {
+    if (!transliteration) return '';
+    
+    // If it's just one character, return as is
+    if (transliteration.length <= 1) return transliteration;
+    
+    // Map of special Egyptian characters - lowercase to uppercase mapping
+    const specialCharMap = {
+        'ꜣ': 'Ꜣ', 'ꜥ': 'Ꜥ', 'ḥ': 'Ḥ', 'ḫ': 'Ḫ',
+        'š': 'Š', 'ṯ': 'Ṯ', 'ḏ': 'Ḏ', 'ḍ': 'Ḍ',
+        'ṭ': 'Ṭ', 'ḳ': 'Ḳ'
+    };
+    
+    // All special characters (both cases)
+    const allSpecialChars = [
+        'Ꜣ', 'Ꜥ', 'Ḥ', 'Ḫ', 'Š', 'Ṯ', 'Ḏ', 'Ḍ', 'Ṭ', 'Ḳ',
+        'ꜣ', 'ꜥ', 'ḥ', 'ḫ', 'š', 'ṯ', 'ḏ', 'ḍ', 'ṭ', 'ḳ',
+        'ẖ' // ẖ is always lowercase, no uppercase version
+    ];
+    
+    // Check if a character is a special Egyptian character
+    function isSpecialChar(char) {
+        return allSpecialChars.includes(char);
+    }
+    
+    // Process the string character by character
+    let result = '';
+    
+    for (let i = 0; i < transliteration.length; i++) {
+        const char = transliteration[i];
+        
+        // Handle first character
+        if (i === 0) {
+            if (isSpecialChar(char)) {
+                // It's a special character at the start
+                if (char in specialCharMap) {
+                    // Convert lowercase special to uppercase
+                    result += specialCharMap[char];
+                } else {
+                    // Already uppercase special or ẖ
+                    result += char;
+                }
+            } else {
+                // Regular letter - uppercase
+                result += char.toUpperCase();
+            }
+        } 
+        // Handle all other characters
+        else {
+            if (isSpecialChar(char)) {
+                // Keep special characters as-is
+                result += char;
+            } else {
+                // Regular letters become lowercase
+                result += char.toLowerCase();
+            }
+        }
+    }
+    
+    return result;
+}
+
+    function createStackedGlyphs(text) {
+        if (!text) return text;
+        return text.replace(/𓈖𓐍/g, 
+            '<span class="hieroglyph-stack">' +
+            '<span class="top-glyph">𓈖</span>' +
+            '<span class="base-glyph">𓐍</span>' +
+            '</span>'
+        );
+    }
+
+    function ensureHieroglyphDisplay(hieroglyph) {
+        return createStackedGlyphs(hieroglyph);
+    }
+
+    function formatExamples(examples) {
+        if (!examples) return '';
+        return createStackedGlyphs(examples);
+    }
+
+    function getPeriodFullName(periodCode) {
+        const periods = {
+            'all': 'All Periods',
+            'old': 'Old Kingdom',
+            'middle': 'Middle Kingdom',
+            'new': 'New Kingdom',
+            'late': 'Late Period',
+            'ptolemaic': 'Ptolemaic Period'
+        };
+        return periods[periodCode] || periodCode;
+    }
+
+    // =============== CORE FUNCTIONS ===============
+
+    function applyFilters() {
+        console.log('Applying filters...', { currentCategory, currentPeriod, currentSort });
+        
+        // Start with all words
+        filteredWords = [...egyptianWords];
+        
+        // Filter by category
+        if (currentCategory !== 'all') {
+            filteredWords = filteredWords.filter(word => 
+                word.category === currentCategory
+            );
+        }
+
+        // Filter by period
+        if (currentPeriod !== 'all') {
+            filteredWords = filteredWords.filter(word => 
+                word.period === currentPeriod
+            );
+        }
+
+        // Apply sorting
+        filteredWords = sortWords(filteredWords, currentSort);
+
+        console.log('Filtered words:', filteredWords.length);
+        
+        // Update display
+        updateDisplay();
+    }
+
+    function sortWords(words, criteria) {
+        const sorted = [...words];
+        
+        switch(criteria) {
+            case 'transliteration':
+                return sorted.sort((a, b) => a.transliteration.localeCompare(b.transliteration));
+            case 'translation':
+                return sorted.sort((a, b) => a.translation.localeCompare(b.translation));
+            case 'gardiner':
+                return sorted.sort((a, b) => a.gardiner.localeCompare(b.gardiner));
+            case 'hieroglyph':
+            default:
+                return sorted.sort((a, b) => a.hieroglyph.localeCompare(b.hieroglyph));
+        }
+    }
+
+    function getWordsForPage(pageNumber) {
+        const startIndex = (pageNumber - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        return {
+            words: filteredWords.slice(startIndex, endIndex),
+            totalPages: Math.ceil(filteredWords.length / itemsPerPage),
+            totalWords: filteredWords.length,
+            currentPage: pageNumber
+        };
+    }
+
+    function displayWordsForPage(pageNumber) {
+        const container = document.getElementById('wordsContainer');
+        if (!container) return;
+        
+        const pageData = getWordsForPage(pageNumber);
+        const wordsToShow = pageData.words;
+
+        container.innerHTML = '';
+
+        if (wordsToShow.length === 0) {
+            container.innerHTML = `
+                <div class="no-results">
+                    <i class="fas fa-scroll"></i>
+                    <h3>No words found</h3>
+                    <p>Try changing your filters or search term</p>
+                </div>
+            `;
+            return;
+        }
+
+        wordsToShow.forEach(word => {
+            const wordCard = document.createElement('div');
+            wordCard.className = 'word-card';
+            wordCard.setAttribute('data-id', word.id);
+            wordCard.setAttribute('data-category', word.category);
+            
+            wordCard.innerHTML = `
+                <div class="hieroglyph-display">${ensureHieroglyphDisplay(word.hieroglyph)}</div>
+                <div class="word-content">
+                    <h3 class="transliteration">${formatTransliteration(word.transliteration)}</h3>
+                    <p class="translation">${word.translation}</p>
+                    <div class="word-meta">
+                        <span class="category-tag ${word.category}">${word.category}</span>
+                        <span class="period-tag">${word.period}</span>
+                        <span class="gardiner-code">${word.gardiner}</span>
+                    </div>
+                    <div class="pronunciation">
+                        <i class="fas fa-volume-up"></i> ${word.pronunciation}
+                    </div>
+                    ${word.examples ? `
+                        <div class="word-examples">
+                            <h4><i class="fas fa-scroll"></i> Example:</h4>
+                            <p>${formatExamples(word.examples)}</p>
+                        </div>
+                    ` : ''}
+                </div>
+                <div class="word-footer">
+                    <button class="btn btn-sm btn-outline view-details">
+                        <i class="fas fa-info-circle"></i> Details
+                    </button>
+                    <button class="btn btn-sm btn-outline add-favorite">
+                        <i class="far fa-star"></i> Save
+                    </button>
+                </div>
+            `;
+            
+            container.appendChild(wordCard);
+        });
+        
+        attachWordCardListeners();
+    }
+
+    function renderPagination() {
+        const paginationContainer = document.getElementById('pagination');
+        if (!paginationContainer) return;
+        
+        const totalPages = Math.ceil(filteredWords.length / itemsPerPage);
+        
+        console.log('Rendering pagination:', { totalPages, currentPage, totalWords: filteredWords.length });
+        
+        if (totalPages <= 1) {
+            paginationContainer.innerHTML = '';
+            return;
+        }
+
+        let paginationHTML = '';
+        
+        // Previous button
+        if (currentPage > 1) {
+            paginationHTML += `<a href="#" class="page-link prev" data-page="${currentPage - 1}">
+                <i class="fas fa-chevron-left"></i> Prev
+            </a>`;
+        }
+
+        // Page numbers
+        const maxVisiblePages = 5;
+        let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+        let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+        
+        if (endPage - startPage + 1 < maxVisiblePages) {
+            startPage = Math.max(1, endPage - maxVisiblePages + 1);
+        }
+
+        for (let i = startPage; i <= endPage; i++) {
+            if (i === currentPage) {
+                paginationHTML += `<span class="page-link current">${i}</span>`;
+            } else {
+                paginationHTML += `<a href="#" class="page-link" data-page="${i}">${i}</a>`;
+            }
+        }
+
+        // Next button
+        if (currentPage < totalPages) {
+            paginationHTML += `<a href="#" class="page-link next" data-page="${currentPage + 1}">
+                Next <i class="fas fa-chevron-right"></i>
+            </a>`;
+        }
+
+        paginationContainer.innerHTML = paginationHTML;
+
+        // Remove any existing event listeners first
+        const newPaginationContainer = paginationContainer.cloneNode(true);
+        paginationContainer.parentNode.replaceChild(newPaginationContainer, paginationContainer);
+
+        // Add new event listeners
+        newPaginationContainer.querySelectorAll('.page-link[data-page]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const page = parseInt(this.dataset.page);
+                console.log('Page clicked:', page);
+                if (!isNaN(page)) {
+                    currentPage = page;
+                    updateDisplay();
+                    document.querySelector('.words-section')?.scrollIntoView({ 
+                        behavior: 'smooth' 
+                    });
+                }
+            });
+        });
+    }
+
+    function updatePageInfo() {
+        const pageInfo = document.getElementById('pageInfo');
+        if (!pageInfo) return;
+        
+        const startIndex = (currentPage - 1) * itemsPerPage + 1;
+        const endIndex = Math.min(currentPage * itemsPerPage, filteredWords.length);
+        const totalWords = filteredWords.length;
+        
+        let infoText = `Showing ${startIndex}-${endIndex} of ${totalWords} Egyptian words`;
+        
+        if (currentCategory !== 'all') {
+            infoText += ` in ${currentCategory}`;
+        }
+        if (currentPeriod !== 'all') {
+            infoText += ` (${currentPeriod} Period)`;
+        }
+        
+        pageInfo.textContent = infoText;
+    }
+
+    function updateDisplay() {
+        console.log('Updating display for page:', currentPage);
+        displayWordsForPage(currentPage);
+        renderPagination();
+        updatePageInfo();
+    }
+
+    function attachWordCardListeners() {
+        document.querySelectorAll('.view-details').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const wordCard = this.closest('.word-card');
+                const wordId = parseInt(wordCard.dataset.id);
+                showWordDetails(wordId);
+            });
+        });
+        
+        document.querySelectorAll('.add-favorite').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const wordCard = this.closest('.word-card');
+                const wordId = parseInt(wordCard.dataset.id);
+                toggleFavorite(wordId);
+                
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('far')) {
+                    icon.classList.replace('far', 'fas');
+                    this.innerHTML = '<i class="fas fa-star"></i> Saved';
+                } else {
+                    icon.classList.replace('fas', 'far');
+                    this.innerHTML = '<i class="far fa-star"></i> Save';
+                }
+            });
+        });
+    }
+
+    function showWordDetails(wordId) {
+        const word = egyptianWords.find(w => w.id === wordId);
+        if (!word) return;
+        
+        const modal = document.createElement('div');
+        modal.className = 'word-modal';
+        modal.innerHTML = `
+            <div class="modal-content">
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+                <div class="word-detail-header">
+                    <div class="word-glyph-large">
+                        ${ensureHieroglyphDisplay(word.hieroglyph)}
+                    </div>
+                    <div class="word-detail-info">
+                        <h2>${formatTransliteration(word.transliteration)}</h2>
+                        <h3>${word.translation}</h3>
+                        <div class="word-detail-meta">
+                            <span class="category-tag ${word.category}">${word.category}</span>
+                            <span class="period-tag">${word.period}</span>
+                            <span class="gardiner-code">${word.gardiner}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="word-detail-body">
+                    <div class="detail-section">
+                        <h4><i class="fas fa-volume-up"></i> Pronunciation</h4>
+                        <p>${word.pronunciation}</p>
+                    </div>
+                    ${word.examples ? `
+                        <div class="detail-section">
+                            <h4><i class="fas fa-scroll"></i> Examples</h4>
+                            <p>${formatExamples(word.examples)}</p>
+                        </div>
+                    ` : ''}
+                    <div class="detail-section">
+                        <h4><i class="fas fa-history"></i> Period</h4>
+                        <p>${getPeriodFullName(word.period)}</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4><i class="fas fa-signature"></i> Gardiner Code</h4>
+                        <p>${word.gardiner}</p>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        
+        setTimeout(() => modal.classList.add('show'), 10);
+        
+        modal.querySelector('.modal-close').addEventListener('click', () => {
+            modal.classList.remove('show');
+            setTimeout(() => modal.remove(), 300);
+        });
+        
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('show');
+                setTimeout(() => modal.remove(), 300);
+            }
+        });
+    }
+
+    function toggleFavorite(wordId) {
+        let favorites = JSON.parse(localStorage.getItem('egyptianFavorites') || '[]');
+        
+        if (favorites.includes(wordId)) {
+            favorites = favorites.filter(id => id !== wordId);
+        } else {
+            favorites.push(wordId);
+        }
+        
+        localStorage.setItem('egyptianFavorites', JSON.stringify(favorites));
+    }
+
+    function performEnhancedSearch() {
+        const searchInput = document.getElementById('searchInput');
+        if (!searchInput) return;
+        
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        
+        if (searchTerm === '') {
+            filteredWords = [...egyptianWords];
+        } else {
+            filteredWords = egyptianWords.filter(word => 
+                word.transliteration.toLowerCase().includes(searchTerm) ||
+                word.translation.toLowerCase().includes(searchTerm) ||
+                word.gardiner.toLowerCase().includes(searchTerm) ||
+                word.category.toLowerCase().includes(searchTerm) ||
+                (word.pronunciation && word.pronunciation.toLowerCase().includes(searchTerm)) ||
+                (word.examples && word.examples.toLowerCase().includes(searchTerm))
+            );
+        }
+        
+        currentPage = 1;
+        updateDisplay();
+    }
+
+    function exportCurrentView() {
+        const data = {
+            words: filteredWords,
+            filters: {
+                category: currentCategory,
+                period: currentPeriod,
+                sort: currentSort,
+                page: currentPage
+            },
+            timestamp: new Date().toISOString(),
+            totalWords: filteredWords.length
+        };
+        
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `egyptian-dictionary-${new Date().toISOString().split('T')[0]}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    // =============== THEME MANAGEMENT ===============
+    
+    function initializeTheme() {
+        const themeToggle = document.getElementById('themeToggle');
+        if (!themeToggle) return;
+        
+        const themeIcon = themeToggle.querySelector('i');
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            if (themeIcon) themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    }
+
+    // =============== NAVIGATION FUNCTIONALITY ===============
+    
+    function initializeNavigation() {
+        // Mobile Menu
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (mobileMenuBtn && navLinks) {
+            mobileMenuBtn.addEventListener('click', function() {
+                const expanded = this.getAttribute('aria-expanded') === 'true' || false;
+                this.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('active');
+            });
+        }
+        
+        // Dropdowns
+        const dropdownButtons = document.querySelectorAll('.nav-dropdown > button.nav-link');
+        dropdownButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const expanded = this.getAttribute('aria-expanded') === 'true' || false;
+                this.setAttribute('aria-expanded', !expanded);
+                
+                dropdownButtons.forEach(otherBtn => {
+                    if (otherBtn !== this) {
+                        otherBtn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            });
+        });
+        
+        document.addEventListener('click', function() {
+            dropdownButtons.forEach(button => {
+                button.setAttribute('aria-expanded', 'false');
+            });
+        });
+    }
+
+    // =============== SIMPLE DEBUG BUTTON ===============
+    
+    function addDebugToggleButton() {
+        if (document.getElementById('hieroglyphDebugBtn')) return;
+        
+        const debugBtn = document.createElement('button');
+        debugBtn.id = 'hieroglyphDebugBtn';
+        debugBtn.innerHTML = '𓏞 Debug';
+        debugBtn.setAttribute('aria-label', 'Open hieroglyph debug tool');
+        debugBtn.title = 'Click to open hieroglyph debug tool';
+        
+        debugBtn.addEventListener('click', function() {
+            window.openGlyphDebugger();
+        });
+        
+        // Add hover effects
+        debugBtn.onmouseover = () => {
+            debugBtn.style.background = '#a0522d';
+            debugBtn.style.transform = 'translateY(-2px)';
+            debugBtn.style.boxShadow = '0 6px 16px rgba(0,0,0,0.3)';
+        };
+        
+        debugBtn.onmouseout = () => {
+            debugBtn.style.background = '#8b4513';
+            debugBtn.style.transform = 'translateY(0)';
+            debugBtn.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+        };
+        
+        document.body.appendChild(debugBtn);
+    }
+
+    function initializeEgyptianDictionary() {
+        console.log('Initializing Egyptian Dictionary...');
+        
+        // Initialize theme
+        initializeTheme();
+        
+        // Initialize navigation
+        initializeNavigation();
+        
+        // Update copyright year
+        const yearElement = document.getElementById('current-year');
+        if (yearElement) {
+            yearElement.textContent = new Date().getFullYear();
+        }
+        
+        // Initialize filter buttons
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        if (filterButtons.length > 0) {
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterButtons.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentCategory = this.dataset.category;
+                    currentPage = 1; // Reset to page 1 when filtering
+                    applyFilters();
+                });
+            });
+        }
+        
+        // Initialize sort dropdown
+        const sortSelect = document.getElementById('sortSelect');
+        if (sortSelect) {
+            sortSelect.addEventListener('change', function() {
+                currentSort = this.value;
+                currentPage = 1; // Reset to page 1 when sorting
+                applyFilters();
+            });
+        }
+        
+        // Initialize period filter
+        const periodSelect = document.getElementById('periodSelect');
+        if (periodSelect) {
+            periodSelect.addEventListener('change', function() {
+                currentPeriod = this.value;
+                currentPage = 1; // Reset to page 1 when filtering
+                applyFilters();
+            });
+        }
+        
+        // Initialize search functionality
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        if (searchBtn && searchInput) {
+            searchBtn.addEventListener('click', performEnhancedSearch);
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performEnhancedSearch();
+                }
+            });
+            
+            searchInput.addEventListener('input', function() {
+                if (this.value.trim() === '') {
+                    performEnhancedSearch();
+                }
+            });
+        }
+        
+        // Initialize export button
+        const exportBtn = document.getElementById('exportBtn');
+        if (exportBtn) {
+            exportBtn.addEventListener('click', exportCurrentView);
+        }
+        
+        // Initialize back to top button
+        const backToTop = document.getElementById('backToTop');
+        if (backToTop) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTop.style.display = 'flex';
+                } else {
+                    backToTop.style.display = 'none';
+                }
+            });
+            
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+        
+        // Add debug button
+        addDebugToggleButton();
+        
+        // Initialize enhanced glyph system
+        initEnhancedGlyphSystem();
+        
+        // Add hieroglyph font
+        if (!document.querySelector('#hieroglyph-font')) {
+            const fontLink = document.createElement('link');
+            fontLink.id = 'hieroglyph-font';
+            fontLink.rel = 'stylesheet';
+            fontLink.href = 'https://fonts.googleapis.com/css2?family=Noto+Sans+Egyptian+Hieroglyphs&display=swap';
+            document.head.appendChild(fontLink);
+        }
+        
+        // Initial render - use all words
+        filteredWords = [...egyptianWords];
+        currentPage = 1;
+        updateDisplay();
+        
+        console.log('%c𓋹 Egyptian Dictionary Loaded Successfully', 'color: #8b4513; font-size: 16px; font-weight: bold;');
+        console.log('Total words:', egyptianWords.length);
+        console.log('Items per page:', itemsPerPage);
+        console.log('Expected pages for 13 words:', Math.ceil(13 / itemsPerPage));
+    }
+
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', initializeEgyptianDictionary);
+</script>
+</body>
+</html>

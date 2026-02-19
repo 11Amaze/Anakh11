@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient Lexicon | Egyptian & Sumerian Dictionary</title>
+    <meta name="description" content="Comprehensive database of Ancient Egyptian and Sumerian words, hieroglyphs, and cuneiform">
+    
+    <!-- Preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Cardo:wght@400;700&display=swap" as="style">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Cardo:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Cardo:wght@400;700&display=swap" rel="stylesheet">
+    </noscript>
+    
+    <!-- Icons with fallback -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <!-- CSS with preload -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Inline critical CSS -->
+    <style>
+        /* Critical CSS for above-the-fold content */
+        #searchModal[hidden] {display: none !important;
+}
+
+    </style>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>𓋹</text></svg>">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Preload images -->
+    <link rel="preload" as="image" href="assets/images/egyptian/hieroglyph.jpg">
+    <link rel="preload" as="image" href="assets/images/sumerian/cuneiform.jpg">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" aria-label="Main navigation">
+        <div class="container nav-container">
+                              <a href="anakh11.html" class="logo" aria-label="Ancient Lexicon Home">
+    <span class="logo-icon" aria-hidden="true">𓋹</span>
+    <span class="logo-text">ꜤANAḪ𓊹𓊹</span>
+    <a href="anakh11_sumerian.html" class="logo">
+        <span class="logo-icon" aria-hidden="true">𒆠</span>
+        <span class="logo-text">𒀭𒊺𒉀</span>
+    </a>
+            
+            <div class="nav-links">
+                <div class="nav-dropdown">
+                    <button class="nav-link" aria-expanded="false" aria-controls="dictionaries-dropdown">
+                        <i class="fas fa-book" aria-hidden="true"></i> Dictionaries
+                    </button>
+                    <div class="dropdown-content" id="dictionaries-dropdown">
+                        <a href="egyptian.html"><i class="fas fa-eye" aria-hidden="true"></i> Egyptian</a>
+                        <a href="sumerian.html"><i class="fas fa-tablet" aria-hidden="true"></i> Sumerian</a>
+                        <a href="hieroglyphs.html"><i class="fas fa-feather-alt" aria-hidden="true"></i> Hieroglyphs</a>
+                        <a href="cuneiform.html"><i class="fas fa-monument" aria-hidden="true"></i> Cuneiform</a>
+                    </div>
+                </div>
+                
+                <div class="nav-dropdown">
+                    <button class="nav-link" aria-expanded="false" aria-controls="learn-dropdown">
+                        <i class="fas fa-graduation-cap" aria-hidden="true"></i> Learn
+                    </button>
+                    <div class="dropdown-content" id="learn-dropdown">
+                        <a href="grammar.html"><i class="fas fa-language" aria-hidden="true"></i> Grammar</a>
+                        <a href="timeline.html"><i class="fas fa-hourglass-half" aria-hidden="true"></i> Timeline</a>
+                        <a href="culture.html"><i class="fas fa-landmark" aria-hidden="true"></i> Culture</a>
+                        <a href="resources.html"><i class="fas fa-book-open" aria-hidden="true"></i> Resources</a>
+                    </div>
+                </div>
+                
+                <a href="artifacts.html" class="nav-link">
+                    <i class="fas fa-museum" aria-hidden="true"></i> Artifacts
+                </a>
+                <a href="contact.html" class="nav-link">
+                    <i class="fas fa-scroll" aria-hidden="true"></i> Contact
+                </a>
+                
+                <button class="btn btn-outline" id="themeToggle" aria-label="Toggle dark/light mode">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                    <span class="sr-only">Toggle theme</span>
+                </button>
+                
+                <div class="search-container">
+                    <label for="searchInput" class="sr-only">Search words</label>
+                    <input type="text" id="searchInput" placeholder="Search words..." aria-label="Search ancient words">
+                    <button id="searchBtn" aria-label="Search">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" aria-label="Open mobile menu" aria-expanded="false">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" role="banner">
+        <div class="container">
+            <div class="hero-content">
+                <span class="badge" aria-hidden="true">𓀀 𓁹 𓂀 𓃠 𓄿 𓅓 𓆑 𓇋</span>
+                <h1 class="hero-title">
+                    <span class="hieroglyph-title" aria-label="Ancient Languages">𓋹𓍑𓎛𓏏𓂋𓂝𓃭𓄿𓅓𓆑𓇋𓈖𓉔𓊪𓋔𓌙𓍏𓎼</span>
+                    <br>Ancient Languages Database
+                </h1>
+                <p class="hero-subtitle">
+                    Explore 5,000+ Egyptian hieroglyphs and Sumerian cuneiform words with translations, 
+                    pronunciations, and historical context. A comprehensive scholarly resource for linguists, 
+                    historians, and enthusiasts.
+                </p>
+                <div class="hero-actions">
+                    <a href="egyptian.html" class="btn btn-primary">
+                        <i class="fas fa-eye" aria-hidden="true"></i>
+                        Egyptian Dictionary
+                    </a>
+                    <a href="sumerian.html" class="btn btn-secondary">
+                        <i class="fas fa-tablet" aria-hidden="true"></i>
+                        Sumerian Dictionary
+                    </a>
+                    <button class="btn btn-outline" id="quickSearchBtn">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                        Quick Search
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">3,217</span>
+                        <span class="stat-label">Egyptian Words</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">2,485</span>
+                        <span class="stat-label">Sumerian Words</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">750+</span>
+                        <span class="stat-label">Hieroglyphs</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">600+</span>
+                        <span class="stat-label">Cuneiform Signs</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="artifact-display">
+                    <div class="artifact-card">
+                        <img 
+                            src="assets/images/egyptian/hieroglyph.jpg" 
+                            alt="Egyptian Hieroglyphs from Middle Kingdom" 
+                            class="artifact-image"
+                            loading="lazy"
+                            width="400"
+                            height="300"
+                        >
+                        <div class="artifact-caption">
+                            <h3>𓋹𓍑𓎛𓏏𓂋𓂝</h3>
+                            <p>Middle Kingdom Hieroglyphic Inscription</p>
+                        </div>
+                    </div>
+                    <div class="artifact-card">
+                        <img 
+                            src="assets/images/sumerian/cuneiform.jpg" 
+                            alt="Sumerian Cuneiform tablet from Ur III Period" 
+                            class="artifact-image"
+                            loading="lazy"
+                            width="400"
+                            height="300"
+                        >
+                        <div class="artifact-caption">
+                            <h3>𒀭𒆠𒉣𒈾</h3>
+                            <p>Ur III Period Cuneiform Tablet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main content with proper landmark roles -->
+    <main id="main-content">
+        <!-- Quick Search Modal -->
+        <div id="searchModal" class="modal" role="dialog" aria-modal="false" aria-labelledby="searchModalTitle" hidden>
+            <div class="modal-content">
+                <button class="modal-close" aria-label="Close search modal">&times;</button>
+                <h2 id="searchModalTitle">Search Ancient Words</h2>
+                <div class="search-modal-body">
+                    <div class="search-filters">
+                        <label for="searchLanguage" class="sr-only">Select language</label>
+                        <select id="searchLanguage">
+                            <option value="all">All Languages</option>
+                            <option value="egyptian">Egyptian</option>
+                            <option value="sumerian">Sumerian</option>
+                        </select>
+                        
+                        <label for="searchCategory" class="sr-only">Select category</label>
+                        <select id="searchCategory">
+                            <option value="all">All Categories</option>
+                            <option value="nouns">Nouns</option>
+                            <option value="verbs">Verbs</option>
+                            <option value="adjectives">Adjectives</option>
+                            <option value="deities">Deities</option>
+                            <option value="places">Places</option>
+                        </select>
+                    </div>
+                    <label for="modalSearchInput" class="sr-only">Search input</label>
+                    <input type="text" id="modalSearchInput" placeholder="Enter word, translation, or Gardiner sign..." aria-label="Search ancient words">
+                    <button id="modalSearchBtn" class="btn btn-primary">Search</button>
+                    <div class="quick-links">
+                        <h4>Popular Searches:</h4>
+                        <div class="quick-search-tags">
+                            <button class="search-tag" data-search="𓂀">𓂀 Eye of Horus</button>
+                            <button class="search-tag" data-search="𒀭">𒀭 An (Sky God)</button>
+                            <button class="search-tag" data-search="𓋹">𓋹 Anakh (Life)</button>
+                            <button class="search-tag" data-search="𒆠">𒆠 Ki (Earth/Land)</button>
+                            <button class="search-tag" data-search="𓊹">𓊹 Naṯaru (God)</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <section class="features" id="features" aria-labelledby="features-title">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="features-title" class="section-title">Explore Ancient Civilisations</h2>
+                    <p class="section-subtitle">Comprehensive linguistic and cultural database</p>
+                </header>
+                
+                <div class="features-grid">
+                    <a href="egyptian.html" class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>Egyptian Dictionary</h3>
+                        <p>3,217 words with hieroglyphs, transliterations, Middle Egyptian translations, and Gardiner classifications.</p>
+                        <span class="feature-link">Browse 𓂀 →</span>
+                    </a>
+                    
+                    <a href="sumerian.html" class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">
+                            <i class="fas fa-tablet"></i>
+                        </div>
+                        <h3>Sumerian Lexicon</h3>
+                        <p>2,485 cuneiform signs with Sumerian logograms, phonetic values, and English translations.</p>
+                        <span class="feature-link">Explore 𒆠 →</span>
+                    </a>
+                    
+                    <a href="hieroglyphs.html" class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">
+                            <i class="fas fa-feather-alt"></i>
+                        </div>
+                        <h3>Hieroglyph Guide</h3>
+                        <p>750+ hieroglyphs organized by Gardiner classification with pronunciation and usage examples.</p>
+                        <span class="feature-link">Learn 𓏙 →</span>
+                    </a>
+                    
+                    <a href="cuneiform.html" class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">
+                            <i class="fas fa-monument"></i>
+                        </div>
+                        <h3>Cuneiform Signs</h3>
+                        <p>600+ cuneiform signs with their values, meanings, and historical development from pictographs.</p>
+                        <span class="feature-link">Study 𒀭 →</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Browse Section -->
+        <section class="browse" aria-labelledby="browse-title">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="browse-title" class="section-title">Quick Browse by Category</h2>
+                    <p class="section-subtitle">Explore words organized by thematic groups</p>
+                </header>
+                
+                <div class="category-grid">
+                    <div class="category-card">
+                        <div class="category-icon" aria-hidden="true">𓀀𓁐</div>
+                        <h3>People & Titles</h3>
+                        <p>Pharaohs, deities, priests, and social roles</p>
+                        <div class="category-count">428 words</div>
+                    </div>
+                    
+                    <div class="category-card">
+                        <div class="category-icon" aria-hidden="true">𓁹</div>
+                        <h3>Body & Health</h3>
+                        <p>Anatomy, medicine, and physiological terms</p>
+                        <div class="category-count">312 words</div>
+                    </div>
+                    
+                    <div class="category-card">
+                        <div class="category-icon" aria-hidden="true">𓆑</div>
+                        <h3>Animals</h3>
+                        <p>Domestic, wild, sacred, and mythological creatures</p>
+                        <div class="category-count">287 words</div>
+                    </div>
+                    
+                    <div class="category-card">
+                        <div class="category-icon" aria-hidden="true">𓇏</div>
+                        <h3>Nature</h3>
+                        <p>Elements, geography, plants, and celestial bodies</p>
+                        <div class="category-count">356 words</div>
+                    </div>
+                    
+                    <div class="category-card">
+                        <div class="category-icon" aria-hidden="true">𓊹</div>
+                        <h3>Religion</h3>
+                        <p>Gods, rituals, temples, and afterlife concepts</p>
+                        <div class="category-count">512 words</div>
+                    </div>
+                    
+                    <div class="category-card">
+                        <div class="category-icon" aria-hidden="true">𓏙</div>
+                        <h3>Daily Life</h3>
+                        <p>Food, clothing, tools, and household items</p>
+                        <div class="category-count">398 words</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Additions -->
+        <section class="recent" aria-labelledby="recent-title">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="recent-title" class="section-title">Recently Added Words</h2>
+                    <p class="section-subtitle">Latest entries in our database</p>
+                </header>
+                
+                <div class="words-table" role="table" aria-label="Recently added words">
+                    <div class="table-header" role="rowgroup">
+                        <div class="table-cell" role="columnheader">Word</div>
+                        <div class="table-cell" role="columnheader">Language</div>
+                        <div class="table-cell" role="columnheader">Transliteration</div>
+                        <div class="table-cell" role="columnheader">Translation</div>
+                        <div class="table-cell" role="columnheader">Category</div>
+                    </div>
+                    
+                    <div class="table-row" role="row">
+                        <div class="table-cell hieroglyph" role="cell">𓋴𓃀𓄿𓇼</div>
+                        <div class="table-cell" role="cell">Egyptian</div>
+                        <div class="table-cell" role="cell">sbꜣ.w</div>
+                        <div class="table-cell" role="cell">Teaching, instruction</div>
+                        <div class="table-cell" role="cell"><span class="category-tag education">Education</span></div>
+                    </div>
+                    
+                    <div class="table-row" role="row">
+                        <div class="table-cell cuneiform" role="cell">𒀭𒈨𒌍</div>
+                        <div class="table-cell" role="cell">Sumerian</div>
+                        <div class="table-cell" role="cell">dingir.meš</div>
+                        <div class="table-cell" role="cell">Gods, deities</div>
+                        <div class="table-cell" role="cell"><span class="category-tag religion">Religion</span></div>
+                    </div>
+                    
+                    <div class="table-row" role="row">
+                        <div class="table-cell hieroglyph" role="cell">𓎡𓄿𓏏𓏭𓂡</div>
+                        <div class="table-cell" role="cell">Egyptian</div>
+                        <div class="table-cell" role="cell">kꜣty</div>
+                        <div class="table-cell" role="cell">Workman, laborer</div>
+                        <div class="table-cell" role="cell"><span class="category-tag occupation">Occupation</span></div>
+                    </div>
+                    
+                    <div class="table-row" role="row">
+                        <div class="table-cell cuneiform" role="cell">𒆠𒅖</div>
+                        <div class="table-cell" role="cell">Sumerian</div>
+                        <div class="table-cell" role="cell">kiš</div>
+                        <div class="table-cell" role="cell">World, totality</div>
+                        <div class="table-cell" role="cell"><span class="category-tag concepts">Concepts</span></div>
+                    </div>
+                    
+                    <div class="table-row" role="row">
+                        <div class="table-cell hieroglyph" role="cell">𓍯𓄿𓈖𓏏</div>
+                        <div class="table-cell" role="cell">Egyptian</div>
+                        <div class="table-cell" role="cell">wꜥn.t</div>
+                        <div class="table-cell" role="cell">Green stone, malachite</div>
+                        <div class="table-cell" role="cell"><span class="category-tag materials">Materials</span></div>
+                    </div>
+                </div>
+                
+                <div class="view-all">
+                    <a href="egyptian.html" class="btn btn-outline">View All Words →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Preview -->
+        <section class="timeline-preview" aria-labelledby="timeline-title">
+            <div class="container">
+                <div class="timeline-header">
+                    <h2 id="timeline-title">Historical Timeline</h2>
+                    <a href="timeline.html" class="btn btn-outline">View Full Timeline →</a>
+                </div>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">c. 3500 BCE</div>
+                        <div class="timeline-content">
+                            <h3>First Cuneiform</h3>
+                            <p>Proto-cuneiform emerges in Uruk</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">c. 3200 BCE</div>
+                        <div class="timeline-content">
+                            <h3>Egyptian Hieroglyphs</h3>
+                            <p>First hieroglyphic inscriptions appear</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">c. 2600 BCE</div>
+                        <div class="timeline-content">
+                            <h3>Old Sumerian</h3>
+                            <p>Fara period tablets</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">c. 2000 BCE</div>
+                        <div class="timeline-content">
+                            <h3>Middle Egyptian</h3>
+                            <p>Classical language period</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+   <!-- Footer -->
+<footer class="footer" role="contentinfo">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+    <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+        <a href="anakh11.html" class="logo" style="margin: 0;">
+            <span class="logo-icon">𓋹</span>
+            <span class="logo-text">ꜤANAḪ𓊹𓊹</span>
+        </a>
+        <a href="anakh11_sumerian.html" class="logo" style="margin: 0;">
+            <span class="logo-icon">𒆠</span>
+            <span class="logo-text">𒀭𒊺𒉀</span>
+        </a>
+    </div>
+    <p class="footer-tagline">
+        Preserving the languages of ancient civilisations through digital scholarship.
+    </p>
+    <div class="footer-social">
+        <a href="#" class="social-link" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+        <a href="#" class="social-link" aria-label="ResearchGate"><i class="fab fa-researchgate" aria-hidden="true"></i></a>
+        <a href="#" class="social-link" aria-label="University"><i class="fas fa-university" aria-hidden="true"></i></a>
+    </div>
+</div>
+            
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Dictionaries</h4>
+                    <a href="egyptian.html">Egyptian</a>
+                    <a href="sumerian.html">Sumerian</a>
+                    <a href="hieroglyphs.html">Hieroglyphs</a>
+                    <a href="cuneiform.html">Cuneiform</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Learning</h4>
+                    <a href="grammar.html">Grammar</a>
+                    <a href="timeline.html">Timeline</a>
+                    <a href="culture.html">Culture</a>
+                    <a href="resources.html">Resources</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                    <a href="artifacts.html">Artifacts</a>
+                    <a href="contact_1.html">Contribute</a>
+                    <a href="contact_3.html">Contact Scholars</a>
+                    <a href="resources.html">Bibliography</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Pages</h4>
+                    <a href="index.html">Home</a>
+                    <a href="anakh11.html">Thesaurus</a>
+                    <a href="egyptian_1.html">Ꜣ Words</a>
+                    <a href="egyptian_2.html">Ꜥ Words</a>
+                    <a href="egyptian_3.html">B Words</a>
+                    <a href="egyptian_4.html">K Words</a>
+                    <a href="egyptian_5.html">Ỉ Words</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Egyptian Resources</h4>
+                    <a href="hieroglyphs.html">Hieroglyph Guide</a>
+                    <a href="grammar.html">Grammar Rules</a>
+                    <a href="timeline.html">Historical Timeline</a>
+                    <a href="resources.html">Bibliography</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Contact & Support</h4>
+                    <a href="contact_1.html">Contribute</a>
+                    <a href="contact_2.html">Report Errors</a>
+                    <a href="contact_3.html">Contact Scholars</a>
+                    <a href="contact_4.html">Feedback</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; <span id="current-year">2026</span> Ancient Lexicon Project. All rights reserved.</p>
+            <p class="tech-stack">
+                Supported by: Based on: Gardiner's Sign List • Faulkner's Dictionary • Wörterbuch der ägyptischen Sprache • Thesaurus Linguæ Ægyptiæ
+            </p>
+        </div>
+    </div>
+</footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <!-- Replace the ENTIRE existing <script> section in index.html with this: -->
+
+<script>
+    // =============== UNIFIED NAVIGATION SYSTEM ===============
+    
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle?.querySelector('i');
+    
+    // Check for saved theme or system preference
+    function initializeTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            if (themeIcon) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            if (themeIcon) {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        }
+    }
+    
+    // Theme toggle event listener
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    }
+    
+    // Mobile Menu
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener('click', function() {
+            const expanded = this.getAttribute('aria-expanded') === 'true' || false;
+            this.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+    }
+    
+    // Dropdowns - IMPROVED: Proper accessible dropdown behavior
+    const dropdownButtons = document.querySelectorAll('.nav-dropdown > button.nav-link');
+    
+    dropdownButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const expanded = this.getAttribute('aria-expanded') === 'true' || false;
+            this.setAttribute('aria-expanded', !expanded);
+            
+            // Close other dropdowns when opening one
+            dropdownButtons.forEach(otherBtn => {
+                if (otherBtn !== this) {
+                    otherBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+    });
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function() {
+        dropdownButtons.forEach(button => {
+            button.setAttribute('aria-expanded', 'false');
+        });
+    });
+    
+    // Search Modal Functionality
+    const searchModal = document.getElementById('searchModal');
+    const quickSearchBtn = document.getElementById('quickSearchBtn');
+    const modalClose = document.querySelector('.modal-close');
+    const searchInput = document.getElementById('searchInput');
+    const modalSearchInput = document.getElementById('modalSearchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const modalSearchBtn = document.getElementById('modalSearchBtn');
+    const searchTags = document.querySelectorAll('.search-tag');
+    
+    // Open search modal
+    if (quickSearchBtn) {
+        quickSearchBtn.addEventListener('click', () => {
+            searchModal.hidden = false;
+            searchModal.setAttribute('aria-modal', 'true');
+            modalSearchInput.focus();
+        });
+    }
+    
+    // Close modal
+    if (modalClose) {
+        modalClose.addEventListener('click', () => {
+            searchModal.hidden = true;
+            searchModal.setAttribute('aria-modal', 'false');
+        });
+    }
+    
+    // Close modal when clicking outside
+    window.addEventListener('click', (e) => {
+        if (e.target === searchModal) {
+            searchModal.hidden = true;
+            searchModal.setAttribute('aria-modal', 'false');
+        }
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !searchModal.hidden) {
+            searchModal.hidden = true;
+            searchModal.setAttribute('aria-modal', 'false');
+        }
+    });
+    
+    // Quick search tag clicks
+    searchTags.forEach(tag => {
+        tag.addEventListener('click', () => {
+            const searchTerm = tag.getAttribute('data-search');
+            modalSearchInput.value = searchTerm;
+            modalSearchInput.focus();
+        });
+    });
+    
+ // =============== ENHANCED SEARCH WITH CROSS-PAGE NAVIGATION ===============
+function performSearch(query) {
+    const language = document.getElementById('searchLanguage')?.value || 'all';
+    const category = document.getElementById('searchCategory')?.value || 'all';
+    
+    console.log('Searching for:', { query, language, category });
+    
+    // Close modal
+    searchModal.hidden = true;
+    searchModal.setAttribute('aria-modal', 'false');
+    
+    // Determine which dictionary page to navigate to
+    let targetPage = '';
+    let searchParam = encodeURIComponent(query);
+    
+    if (language === 'egyptian' || language === 'all') {
+        // Default to Egyptian if 'all' or specifically Egyptian
+        targetPage = 'anakh11.html';
+    } else if (language === 'sumerian') {
+        targetPage = 'anakh11_sumerian.html';
+    }
+    
+    // Build URL with search parameters
+    let url = `${targetPage}?search=${searchParam}`;
+    
+    // Add category filter if specified and not 'all'
+    if (category && category !== 'all') {
+        url += `&category=${encodeURIComponent(category)}`;
+    }
+    
+    // Navigate to the dictionary page with search parameters
+    window.location.href = url;
+}
+    
+    // Search button handlers
+    if (searchBtn && searchInput) {
+        searchBtn.addEventListener('click', () => {
+            if (searchInput.value.trim()) {
+                performSearch(searchInput.value.trim());
+            }
+        });
+    }
+    
+    if (modalSearchBtn && modalSearchInput) {
+        modalSearchBtn.addEventListener('click', () => {
+            if (modalSearchInput.value.trim()) {
+                performSearch(modalSearchInput.value.trim());
+            }
+        });
+    }
+    
+    // Enter key for search
+    if (modalSearchInput) {
+        modalSearchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && modalSearchInput.value.trim()) {
+                performSearch(modalSearchInput.value.trim());
+            }
+        });
+    }
+    
+    if (searchInput) {
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && searchInput.value.trim()) {
+                performSearch(searchInput.value.trim());
+            }
+        });
+    }
+    
+    // =============== BACK TO TOP ===============
+    const backToTop = document.getElementById('backToTop');
+    if (backToTop) {
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+    
+    // =============== INITIALIZATION ===============
+    document.addEventListener('DOMContentLoaded', function() {
+        // Update copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Initialize theme
+        initializeTheme();
+        
+        // Console greeting
+        console.log('%c𓋹 Welcome to Ancient Lexicon!', 'color: #8b4513; font-size: 18px; font-weight: bold;');
+        console.log('%cHomepage navigation unified with Pattern A behavior', 'color: #d4a76a;');
+    });
+    
+    // =============== KEYBOARD SHORTCUTS ===============
+    document.addEventListener('keydown', (e) => {
+        // Ctrl+F or Cmd+F for search (opens modal)
+        if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+            e.preventDefault();
+            if (quickSearchBtn) quickSearchBtn.click();
+        }
+        
+        // Escape to close modal if open
+        if (e.key === 'Escape' && searchModal && !searchModal.hidden) {
+            searchModal.hidden = true;
+            searchModal.setAttribute('aria-modal', 'false');
+        }
+    });
+</script>
+    
+    <!-- Main script with defer -->
+    <script src="script.js" defer></script>
+</body>
+</html>

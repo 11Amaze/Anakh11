@@ -1,0 +1,62 @@
+{
+  "words": [
+    {
+      "hieroglyph": "𓋹",
+      "transliteration": "ꜥnḫ",
+      "pronunciation": "/ˈʕaːnaχ/",
+      "translation": "life, to live",
+      "category": "concepts",
+      "gardiner": "S34",
+      "period": "Old Kingdom - Ptolemaic",
+      "description": "The ankh symbol representing life, often held by deities."
+    },
+    {
+      "hieroglyph": "𓊹",
+      "transliteration": "nṯr",
+      "pronunciation": "/ˈnacːaɾ/",
+      "translation": "god, deity",
+      "category": "religion",
+      "gardiner": "R8",
+      "period": "Old Kingdom - Roman",
+      "description": "The standard word for god or deity, represented by a flag on a pole."
+    }
+  ]
+}
+
+
+
+{
+  
+  "metadata": {
+    "source": "TLA & Faulkner",
+    "count": 3217,
+    "version": "1.0"
+  },
+  "words": [
+    {
+      "id": "EG001",
+      "hieroglyph": "𓋹",
+      "transliteration": "ꜥnḫ",
+      "pronunciation": "/ˈʕaːnaχ/",
+      "meaning": "life, to live",
+      "category": "concepts",
+      "gardiner": "S34",
+      "period": ["OK", "MK", "NK", "LP"],
+      "examples": ["𓋹𓏏𓆑 - ꜥnḫt - life (feminine)"],
+      "etymology": "From ꜥnḫ 'to live'"
+    }
+  ]
+}
+
+[
+  {"hieroglyph": "𓋹", "transliteration": "ꜥnḫ", "meaning": "life"},
+  {"hieroglyph": "𓊹", "transliteration": "nṯr", "meaning": "god"},
+  {"hieroglyph": "𓄤", "transliteration": "nfr", "meaning": "beautiful, good"},
+  {"hieroglyph": "𓂓", "transliteration": "mr", "meaning": "love"},
+  {"hieroglyph": "𓏙", "transliteration": "wḏꜣ", "meaning": "eye of Horus"},
+  {"hieroglyph": "𓅓", "transliteration": "m", "meaning": "in, from"},
+  {"hieroglyph": "𓂋", "transliteration": "r", "meaning": "mouth, to"},
+  {"hieroglyph": "𓇋", "transliteration": "j", "meaning": "I"},
+  {"hieroglyph": "𓏏", "transliteration": "t", "meaning": "feminine ending"},
+  {"hieroglyph": "𓈖", "transliteration": "n", "meaning": "of, for"}
+]v

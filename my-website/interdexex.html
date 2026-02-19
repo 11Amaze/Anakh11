@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient Lexicon | Egyptian & Sumerian Dictionary</title>
+    <meta name="description" content="Comprehensive database of Ancient Egyptian and Sumerian words, hieroglyphs, and cuneiform">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Cardo:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>𓋹</text></svg>">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">𓋹</span>
+                <span class="logo-text">Ancient Lexicon</span>
+            </a>
+            
+            <div class="nav-links">
+                <div class="nav-dropdown">
+                    <a href="#dictionaries" class="nav-link">
+                        <i class="fas fa-book"></i> Dictionaries
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="egyptian.html"><i class="fas fa-eye"></i> Egyptian</a>
+                        <a href="sumerian.html"><i class="fas fa-tablet"></i> Sumerian</a>
+                        <a href="hieroglyphs.html"><i class="fas fa-feather-alt"></i> Hieroglyphs</a>
+                        <a href="cuneiform.html"><i class="fas fa-monument"></i> Cuneiform</a>
+                    </div>
+                </div>
+                
+                <div class="nav-dropdown">
+                    <a href="#learn" class="nav-link">
+                        <i class="fas fa-graduation-cap"></i> Learn
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="grammar.html"><i class="fas fa-language"></i> Grammar</a>
+                        <a href="timeline.html"><i class="fas fa-hourglass-half"></i> Timeline</a>
+                        <a href="culture.html"><i class="fas fa-landmark"></i> Culture</a>
+                        <a href="resources.html"><i class="fas fa-book-open"></i> Resources</a>
+                    </div>
+                </div>
+                
+                <a href="artifacts.html" class="nav-link">
+                    <i class="fas fa-museum"></i> Artifacts
+                </a>
+                <a href="contact.html" class="nav-link">
+                    <i class="fas fa-scroll"></i> Contact
+                </a>
+                
+                <button class="btn btn-outline" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search words...">
+                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="badge">𓀀 𓁹 𓂀 𓃠 𓄿 𓅓 𓆑 𓇋</span>
+                <h1 class="hero-title">
+                    <span class="hieroglyph-title">𓋹𓍑𓎛𓏏𓂋𓂝𓃭𓄿𓅓𓆑𓇋𓈖𓉔𓊪𓋔𓌙𓍏𓎼</span>
+                    <br>Ancient Languages Database
+                </h1>
+                <p class="hero-subtitle">
+                    Explore 5,000+ Egyptian hieroglyphs and Sumerian cuneiform words with translations, 
+                    pronunciations, and historical context. A comprehensive scholarly resource for linguists, 
+                    historians, and enthusiasts.
+                </p>
+                <div class="hero-actions">
+                    <a href="egyptian.html" class="btn btn-primary">
+                        <i class="fas fa-eye"></i>
+                        Egyptian Dictionary
+                    </a>
+                    <a href="sumerian.html" class="btn btn-secondary">
+                        <i class="fas fa-tablet"></i>
+                        Sumerian Dictionary
+                    </a>
+                    <button class="btn btn-outline" id="quickSearchBtn">
+                        <i class="fas fa-search"></i>
+                        Quick Search
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">3,217</span>
+                        <span class="stat-label">Egyptian Words</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">2,485</span>
+                        <span class="stat-label">Sumerian Words</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">750+</span>
+                        <span class="stat-label">Hieroglyphs</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">600+</span>
+                        <span class="stat-label">Cuneiform Signs</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="artifact-display">
+                    <div class="artifact-card">
+                        <img src="assets/images/egyptian/hieroglyph.jpg" alt="Egyptian Hieroglyphs" class="artifact-image">
+                        <div class="artifact-caption">
+                            <h3>𓋹𓍑𓎛𓏏𓂋𓂝</h3>
+                            <p>Middle Kingdom Hieroglyphic Inscription</p>
+                        </div>
+                    </div>
+                    <div class="artifact-card">
+                        <img src="assets/images/sumerian/cuneiform.jpg" alt="Sumerian Cuneiform" class="artifact-image">
+                        <div class="artifact-caption">
+                            <h3>𒀭𒆠𒉣𒈾</h3>
+                            <p>Ur III Period Cuneiform Tablet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Search Modal -->
+    <div id="searchModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Search Ancient Words</h2>
+            <div class="search-modal-body">
+                <div class="search-filters">
+                    <select id="searchLanguage">
+                        <option value="all">All Languages</option>
+                        <option value="egyptian">Egyptian</option>
+                        <option value="sumerian">Sumerian</option>
+                    </select>
+                    <select id="searchCategory">
+                        <option value="all">All Categories</option>
+                        <option value="nouns">Nouns</option>
+                        <option value="verbs">Verbs</option>
+                        <option value="adjectives">Adjectives</option>
+                        <option value="deities">Deities</option>
+                        <option value="places">Places</option>
+                    </select>
+                </div>
+                <input type="text" id="modalSearchInput" placeholder="Enter word, translation, or Gardiner sign...">
+                <button id="modalSearchBtn" class="btn btn-primary">Search</button>
+                <div class="quick-links">
+                    <h4>Popular Searches:</h4>
+                    <div class="quick-search-tags">
+                        <span class="search-tag" data-search="𓂀">𓂀 Eye of Horus</span>
+                        <span class="search-tag" data-search="𒀭">𒀭 An (Sky God)</span>
+                        <span class="search-tag" data-search="𓏙">𓏙 Ankh</span>
+                        <span class="search-tag" data-search="𒆠">𒆠 Ki (Earth)</span>
+                        <span class="search-tag" data-search="𓊹">𓊹 Netjer (God)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Explore Ancient Civilizations</h2>
+                <p class="section-subtitle">Comprehensive linguistic and cultural database</p>
+            </div>
+            
+            <div class="features-grid">
+                <a href="egyptian.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Egyptian Dictionary</h3>
+                    <p>3,217 words with hieroglyphs, transliterations, Middle Egyptian translations, and Gardiner classifications.</p>
+                    <span class="feature-link">Browse 𓂀 →</span>
+                </a>
+                
+                <a href="sumerian.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tablet"></i>
+                    </div>
+                    <h3>Sumerian Lexicon</h3>
+                    <p>2,485 cuneiform signs with Sumerian logograms, phonetic values, and English translations.</p>
+                    <span class="feature-link">Explore 𒆠 →</span>
+                </a>
+                
+                <a href="hieroglyphs.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-feather-alt"></i>
+                    </div>
+                    <h3>Hieroglyph Guide</h3>
+                    <p>750+ hieroglyphs organized by Gardiner classification with pronunciation and usage examples.</p>
+                    <span class="feature-link">Learn 𓏙 →</span>
+                </a>
+                
+                <a href="cuneiform.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-monument"></i>
+                    </div>
+                    <h3>Cuneiform Signs</h3>
+                    <p>600+ cuneiform signs with their values, meanings, and historical development from pictographs.</p>
+                    <span class="feature-link">Study 𒀭 →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Browse Section -->
+    <section class="browse">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Quick Browse by Category</h2>
+                <p class="section-subtitle">Explore words organized by thematic groups</p>
+            </div>
+            
+            <div class="category-grid">
+                <div class="category-card">
+                    <div class="category-icon">𓀀</div>
+                    <h3>People & Titles</h3>
+                    <p>Pharaohs, deities, priests, and social roles</p>
+                    <div class="category-count">428 words</div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">𓁹</div>
+                    <h3>Body & Health</h3>
+                    <p>Anatomy, medicine, and physiological terms</p>
+                    <div class="category-count">312 words</div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">𓆑</div>
+                    <h3>Animals</h3>
+                    <p>Domestic, wild, sacred, and mythological creatures</p>
+                    <div class="category-count">287 words</div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">𓇋</div>
+                    <h3>Nature</h3>
+                    <p>Elements, geography, plants, and celestial bodies</p>
+                    <div class="category-count">356 words</div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">𓊹</div>
+                    <h3>Religion</h3>
+                    <p>Gods, rituals, temples, and afterlife concepts</p>
+                    <div class="category-count">512 words</div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">𓏙</div>
+                    <h3>Daily Life</h3>
+                    <p>Food, clothing, tools, and household items</p>
+                    <div class="category-count">398 words</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Additions -->
+    <section class="recent">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Recently Added Words</h2>
+                <p class="section-subtitle">Latest entries in our database</p>
+            </div>
+            
+            <div class="words-table">
+                <div class="table-header">
+                    <div class="table-cell">Word</div>
+                    <div class="table-cell">Language</div>
+                    <div class="table-cell">Transliteration</div>
+                    <div class="table-cell">Translation</div>
+                    <div class="table-cell">Category</div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="table-cell hieroglyph">𓋴𓃀𓇼𓄿𓈖</div>
+                    <div class="table-cell">Egyptian</div>
+                    <div class="table-cell">sbꜣ.w</div>
+                    <div class="table-cell">Teaching, instruction</div>
+                    <div class="table-cell"><span class="category-tag education">Education</span></div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="table-cell cuneiform">𒀭𒈨𒌍</div>
+                    <div class="table-cell">Sumerian</div>
+                    <div class="table-cell">dingir.meš</div>
+                    <div class="table-cell">Gods, deities</div>
+                    <div class="table-cell"><span class="category-tag religion">Religion</span></div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="table-cell hieroglyph">𓎡𓄿𓏏𓏭𓂡</div>
+                    <div class="table-cell">Egyptian</div>
+                    <div class="table-cell">kꜣty</div>
+                    <div class="table-cell">Workman, laborer</div>
+                    <div class="table-cell"><span class="category-tag occupation">Occupation</span></div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="table-cell cuneiform">𒆠𒅖</div>
+                    <div class="table-cell">Sumerian</div>
+                    <div class="table-cell">kiš</div>
+                    <div class="table-cell">World, totality</div>
+                    <div class="table-cell"><span class="category-tag concepts">Concepts</span></div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="table-cell hieroglyph">𓍯𓄿𓈖𓏏</div>
+                    <div class="table-cell">Egyptian</div>
+                    <div class="table-cell">wꜥn.t</div>
+                    <div class="table-cell">Green stone, malachite</div>
+                    <div class="table-cell"><span class="category-tag materials">Materials</span></div>
+                </div>
+            </div>
+            
+            <div class="view-all">
+                <a href="egyptian.html" class="btn btn-outline">View All Words →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Preview -->
+    <section class="timeline-preview">
+        <div class="container">
+            <div class="timeline-header">
+                <h2>Historical Timeline</h2>
+                <a href="timeline.html" class="btn btn-outline">View Full Timeline →</a>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">c. 3500 BCE</div>
+                    <div class="timeline-content">
+                        <h3>First Cuneiform</h3>
+                        <p>Proto-cuneiform emerges in Uruk</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">c. 3200 BCE</div>
+                    <div class="timeline-content">
+                        <h3>Egyptian Hieroglyphs</h3>
+                        <p>First hieroglyphic inscriptions appear</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">c. 2600 BCE</div>
+                    <div class="timeline-content">
+                        <h3>Old Sumerian</h3>
+                        <p>Fara period tablets</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">c. 2000 BCE</div>
+                    <div class="timeline-content">
+                        <h3>Middle Egyptian</h3>
+                        <p>Classical language period</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon">𓋹</span>
+                        <span class="logo-text">Ancient Lexicon</span>
+                    </a>
+                    <p class="footer-tagline">
+                        Preserving the languages of ancient civilizations through digital scholarship.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-academia"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-researchgate"></i></a>
+                        <a href="#" class="social-link"><i class="fas fa-university"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Dictionaries</h4>
+                        <a href="egyptian.html">Egyptian</a>
+                        <a href="sumerian.html">Sumerian</a>
+                        <a href="hieroglyphs.html">Hieroglyphs</a>
+                        <a href="cuneiform.html">Cuneiform</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Learning</h4>
+                        <a href="grammar.html">Grammar</a>
+                        <a href="timeline.html">Timeline</a>
+                        <a href="culture.html">Culture</a>
+                        <a href="resources.html">Resources</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Explore</h4>
+                        <a href="artifacts.html">Artifacts</a>
+                        <a href="contact.html">Contribute</a>
+                        <a href="contact.html">Contact Scholars</a>
+                        <a href="resources.html">Bibliography</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Pages</h4>
+                        <a href="index.html">Home</a>
+                        <a href="page1.html">A Words</a>
+                        <a href="page2.html">B Words</a>
+                        <a href="page3.html">C Words</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Ancient Lexicon Project. All rights reserved.</p>
+                <p class="tech-stack">
+                    Supported by: University of Chicago • British Museum • Cairo Museum
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
